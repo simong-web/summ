@@ -30,3 +30,8 @@ declare module summ {
         public togglePause(): void;
     }
 }
+declare module summ {
+    class Preloader {
+        public staticload(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
+    }
+}
