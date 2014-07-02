@@ -1,4 +1,0 @@
-summ
-====
-
-Hosted summ-lib
