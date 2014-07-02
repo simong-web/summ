@@ -30,7 +30,7 @@ declare module summ {
         public togglePause(): void;
     }
 }
-declare module summ {
+declare module Gitsumm {
     class Preloader {
         static load(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
     }

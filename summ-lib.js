@@ -169,8 +169,8 @@ var summ;
 })(summ || (summ = {}));
 //#######################GitsummPreloader.ts###############################
 /// <reference path="build\phaser.d.ts" />
-var summ;
-(function (summ) {
+var Gitsumm;
+(function (Gitsumm) {
     var Preloader = (function () {
         function Preloader() {
         }
@@ -205,6 +205,6 @@ var summ;
         };
         return Preloader;
     })();
-    summ.Preloader = Preloader;
-})(summ || (summ = {}));
+    Gitsumm.Preloader = Preloader;
+})(Gitsumm || (Gitsumm = {}));
 //# sourceMappingURL=summ-lib.js.map
