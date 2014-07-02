@@ -4,6 +4,8 @@ var summ;
 (function (summ) {
     var PauseMenu = (function () {
         function PauseMenu(game, defaultSprite, defaultOverFrame, defaultOutFrame, defaultDownFrame, defaultUpFrame, defaultScaleX, defaultScaleY, defaultTextStyle, backgroundSprite, stretchBackground, menuBounds, spreadAlongY) {
+            this._paused = false;
+            this.phaserPause = false;
             this.game = game;
 
             this.buttons = new Array();
@@ -37,10 +39,10 @@ var summ;
         }
         Object.defineProperty(PauseMenu.prototype, "paused", {
             get: function () {
-                return this._paused;
+                return this.phaserPause ? this.game.paused : this._paused;
             },
             set: function (value) {
-                if (value === !this._paused) {
+                if (value === !this.paused) {
                     this.togglePause();
                 }
             },
@@ -130,38 +132,60 @@ var summ;
         };
 
         PauseMenu.prototype.togglePause = function () {
-            this._paused = !this._paused;
-            if (this._paused) {
-                //Show menu
-                this.showMenu();
+            if (this.phaserPause) {
+                var oldMute = this.game.sound.mute;
+                this.game.paused = !this.game.paused;
+                this.game.sound.mute = oldMute;
 
-                //Pause game function
-                this.game.time.events.pause();
-                this.game.sound.pauseAll();
-                this.preUpdateFunction = this.game.stage.preUpdate;
-                this.game.stage.preUpdate = function () {
-                };
-                this.updateFunction = this.game.stage.update;
-                this.game.stage.update = function () {
-                    this.game.time.events.pause();
-                };
-                this.tweenUpdate = this.game.tweens.update;
-                this.game.tweens.update = function () {
-                    return false;
-                };
-                this.game.onPause.dispatch();
+                if (this.game.paused) {
+                    this.game.input.onUp.add(this.handleClick, this);
+                    this.showMenu();
+                } else {
+                    this.game.input.onUp.remove(this.handleClick, this);
+                    this.hideMenu();
+                }
             } else {
-                //Resume game function
-                this.game.sound.resumeAll();
-                this.game.stage.preUpdate = this.preUpdateFunction;
-                this.game.stage.update = this.updateFunction;
-                this.game.tweens.update = this.tweenUpdate;
-                this.game.time.events.resume();
-                this.game.onResume.dispatch();
+                this._paused = !this._paused;
+                if (this._paused) {
+                    //Show menu
+                    this.showMenu();
 
-                //Hide menu
-                this.hideMenu();
+                    //Pause game function
+                    this.game.time.events.pause();
+                    this.game.sound.pauseAll();
+                    this.preUpdateFunction = this.game.stage.preUpdate;
+                    this.game.stage.preUpdate = function () {
+                    };
+                    this.updateFunction = this.game.stage.update;
+                    this.game.stage.update = function () {
+                        this.game.time.events.pause();
+                    };
+                    this.tweenUpdate = this.game.tweens.update;
+                    this.game.tweens.update = function () {
+                        return false;
+                    };
+                    this.game.onPause.dispatch();
+                } else {
+                    //Resume game function
+                    this.game.sound.resumeAll();
+                    this.game.stage.preUpdate = this.preUpdateFunction;
+                    this.game.stage.update = this.updateFunction;
+                    this.game.tweens.update = this.tweenUpdate;
+                    this.game.time.events.resume();
+                    this.game.onResume.dispatch();
+
+                    //Hide menu
+                    this.hideMenu();
+                }
             }
+        };
+
+        PauseMenu.prototype.handleClick = function (pointer) {
+            this.buttons.forEach(function (button) {
+                if (button.getBounds().contains(pointer.x, pointer.y)) {
+                    button.onInputUpHandler(this, pointer, true);
+                }
+            }, this);
         };
         return PauseMenu;
     })();
