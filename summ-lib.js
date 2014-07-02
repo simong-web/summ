@@ -174,7 +174,7 @@ var summ;
     var Preloader = (function () {
         function Preloader() {
         }
-        Preloader.prototype.staticload = function (game, loadAssets, context, nextState) {
+        Preloader.load = function (game, loadAssets, context, nextState) {
             game.state.add('gitbootload', {
                 preload: function () {
                     game.load.image('gitpreloadbar', 'assets/loader.png');

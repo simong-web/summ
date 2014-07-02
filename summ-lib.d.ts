@@ -32,6 +32,6 @@ declare module summ {
 }
 declare module summ {
     class Preloader {
-        public staticload(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
+        static load(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
     }
 }
