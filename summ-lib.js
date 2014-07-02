@@ -167,10 +167,10 @@ var summ;
     })();
     summ.PauseMenu = PauseMenu;
 })(summ || (summ = {}));
-//#######################GitsummPreloader.ts###############################
+//#######################Preloader.ts###############################
 /// <reference path="build\phaser.d.ts" />
-var Gitsumm;
-(function (Gitsumm) {
+var summ;
+(function (summ) {
     var Preloader = (function () {
         function Preloader() {
         }
@@ -235,6 +235,6 @@ var Gitsumm;
         };
         return Preloader;
     })();
-    Gitsumm.Preloader = Preloader;
-})(Gitsumm || (Gitsumm = {}));
+    summ.Preloader = Preloader;
+})(summ || (summ = {}));
 //# sourceMappingURL=summ-lib.js.map
