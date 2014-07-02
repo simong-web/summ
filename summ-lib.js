@@ -220,7 +220,7 @@ var summ;
                     //bar.width = game.width - game.width / 8;
                     this.load.setPreloadSprite(bar);
 
-                    loadAssets.call(context);
+                    loadAssets.call(context, this.game);
                 },
                 create: function () {
                     game.state.start(nextState);

@@ -1,2 +1,40 @@
-Reference: http://simon-gitsumm.github.io/summ/summ-lib.js \n
-Download: http://simon-gitsumm.github.io/summ/summ-lib.d.ts 
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Summ-lib Documentation</title>
+</head>
+<body>
+    <h1>Summ-lib Documentation</h1>
+    <h2>Phaser:</h2>
+
+    <dl>
+        <dt>summ.Preloader</dt>
+        <dt><strong>Preloader -</strong> The preloader has two load functions. The basic load function uses assets grabbed from the Gitsumm website. The loadLocal function will look for <em>&#39;logo.png&#39;</em> and &#39;loader.png&#39; in your projects &#39;<em>/assets</em>&#39; folder<br />
+        </dt>
+    </dl>
+    <h3>
+        static load(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;</h3>
+    <p>
+        <em>Loads your assets displaying the gitsum loading bar and logo before loading the next state. Will only work from a webserver as most browsers will block any requests for cross origin files. </em></p>
+    <ul>
+        <li>game - the instance of Phaser.Game to load the images into.</li>
+        <li>loadAssets - a function used to load your assets. It is called from the context specified, usually the game instance.</li>
+        <li>context - the object to be used as the context for loading the assets</li>
+        <li>nextState - a string specifying the new state to change to once the loading is finished<br /></li>
+    </ul>
+    <h3>static load(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;</h3>
+    <p>
+        <em>A version of load which works on a local machine. Loads your assets using &#39;logo.png&#39; and &#39;loader.png&#39; which should be placed in the projects /assets folder.</em></p>
+    <ul>
+        <li>game - the instance of Phaser.Game to load the images into.</li>
+        <li>loadAssets - a function used to load your assets. It is called from the context specified, usually the game instance.</li>
+        <li>context - the object to be used as the context for loading the assets</li>
+        <li>nextState - a string specifying the new state to change to once the loading is finished</li>
+    </ul>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+
+</body>
+</html>
