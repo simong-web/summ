@@ -33,5 +33,6 @@ declare module summ {
 declare module Gitsumm {
     class Preloader {
         static load(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
+        static loadLocal(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
     }
 }

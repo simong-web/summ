@@ -203,6 +203,36 @@ var Gitsumm;
                 }
             });
         };
+
+        Preloader.loadLocal = function (game, loadAssets, context, nextState) {
+            game.state.add('gitbootload', {
+                preload: function () {
+                    game.load.image('gitpreloadbar', 'assets/loader.png');
+                    game.load.image('gitpreloadlogo', 'assets/logo.png');
+                },
+                create: function () {
+                    game.state.start('gitpreload');
+                }
+            }, true);
+
+            game.state.add('gitpreload', {
+                preload: function () {
+                    var logo = game.add.sprite(game.width / 2, game.height * 3 / 4, 'gitpreloadlogo');
+                    logo.anchor.set(0.5, 1);
+
+                    var bar = game.add.sprite(logo.x, logo.y, 'gitpreloadbar');
+                    bar.x -= bar.width / 2;
+
+                    //bar.width = game.width - game.width / 8;
+                    this.load.setPreloadSprite(bar);
+
+                    loadAssets.call(context);
+                },
+                create: function () {
+                    game.state.start(nextState);
+                }
+            });
+        };
         return Preloader;
     })();
     Gitsumm.Preloader = Preloader;
