@@ -1,5 +1,5 @@
 ﻿//#######################PauseMenu.ts###############################
-/// <reference path="phaser.d.ts" />
+/// <reference path="build\phaser.d.ts" />
 var summ;
 (function (summ) {
     var PauseMenu = (function () {
@@ -168,7 +168,7 @@ var summ;
     summ.PauseMenu = PauseMenu;
 })(summ || (summ = {}));
 //#######################GitsummPreloader.ts###############################
-/// <reference path="phaser.d.ts" />
+/// <reference path="build\phaser.d.ts" />
 var summ;
 (function (summ) {
     var Preloader = (function () {

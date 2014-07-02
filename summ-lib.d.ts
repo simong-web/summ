@@ -1,4 +1,4 @@
-﻿/// <reference path="../phaser.d.ts" />
+﻿/// <reference path="phaser.d.ts" />
 declare module summ {
     class PauseMenu {
         public game: Phaser.Game;
