@@ -92,6 +92,9 @@ var summ;
             buttonText.anchor.set(0.5, 0.5);
             buttonText.scale.setTo(scaleX, scaleY);
 
+            if (callbackContext === 'self')
+                callbackContext = buttonText;
+
             buttonText.inputEnabled = true;
             if (onUpCallback)
                 buttonText.events.onInputUp.add(onUpCallback, callbackContext);
