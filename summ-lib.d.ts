@@ -24,7 +24,8 @@ declare module summ {
         public phaserPause: boolean;
         constructor(game: Phaser.Game, defaultSprite?: string, defaultOverFrame?: number, defaultOutFrame?: number, defaultDownFrame?: number, defaultUpFrame?: number, defaultScaleX?: number, defaultScaleY?: number, defaultTextStyle?: any, backgroundSprite?: Phaser.Sprite, stretchBackground?: boolean, menuBounds?: Phaser.Rectangle, spreadAlongY?: boolean);
         public addButton(text: string, callback?: Function, callbackContext?: Object, addButtonTextToCallBack?: boolean, key?: string, overFrame?: number, outFrame?: number, downFrame?: number, upFrame?: number, scaleX?: number, scaleY?: number, textStyle?: any): void;
-        public addExistingButton(button: Phaser.Button, buttonText: Phaser.Text): void;
+        public addTextAsButton(text: string, onUpCallback?: Function, onOverCallback?: Function, onDownCallback?: Function, onOutCallback?: Function, callbackContext?: Object, scaleX?: number, scaleY?: number, textStyle?: any): void;
+        public addExistingButton(buttonText: Phaser.Text, button?: Phaser.Button): void;
         public showMenu(): void;
         public hideMenu(): void;
         public updateButtonPositions(): void;

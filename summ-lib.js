@@ -62,7 +62,6 @@ var summ;
                 throw Error("No text style was given and no default has been specified");
 
             var buttonText = new Phaser.Text(this.game, 0, 0, text, textStyle || this.defaultTextStyle);
-            buttonText.fixedToCamera = true;
             buttonText.anchor.set(0.5, 0.5);
             this.buttonsText.push(buttonText);
 
@@ -71,17 +70,44 @@ var summ;
 
             var button = new Phaser.Button(this.game, 0, 0, key || this.defaultSpriteKey, callback, callbackContext, overFrame || this.defaultSpriteOver, outFrame || this.defaultSpriteOut, downFrame || this.defaultSpriteDown, upFrame || this.defaultSpriteUp);
             button.anchor.set(0.5, 0.5);
-            button.fixedToCamera = true;
             button.scale.setTo(scaleX, scaleY);
             this.buttons.push(button);
 
             this.updateButtonPositions();
         };
 
-        PauseMenu.prototype.addExistingButton = function (button, buttonText) {
-            this.buttons.push(button);
+        PauseMenu.prototype.addTextAsButton = function (text, onUpCallback, onOverCallback, onDownCallback, onOutCallback, callbackContext, scaleX, scaleY, textStyle) {
+            scaleX = scaleX || this.defaultScaleX || 1;
+            scaleY = scaleY || this.defaultScaleY || 1;
+
+            if (!this.defaultTextStyle && !textStyle)
+                throw Error("No text style was given and no default has been specified");
+
+            var buttonText = new Phaser.Text(this.game, 0, 0, text, textStyle || this.defaultTextStyle);
+            buttonText.anchor.set(0.5, 0.5);
+            buttonText.scale.setTo(scaleX, scaleY);
+
+            buttonText.inputEnabled = true;
+            if (onUpCallback)
+                buttonText.events.onInputUp.add(onUpCallback, callbackContext);
+            if (onOverCallback)
+                buttonText.events.onInputOver.add(onOverCallback, callbackContext);
+            if (onDownCallback)
+                buttonText.events.onInputDown.add(onDownCallback, callbackContext);
+            if (onOutCallback)
+                buttonText.events.onInputOut.add(onOutCallback, callbackContext);
+
+            this.buttons.push(null);
             this.buttonsText.push(buttonText);
 
+            this.updateButtonPositions();
+        };
+
+        PauseMenu.prototype.addExistingButton = function (buttonText, button) {
+            button = button || null;
+            this.buttons.push(button);
+
+            this.buttonsText.push(buttonText);
             this.updateButtonPositions();
         };
 
@@ -90,7 +116,8 @@ var summ;
                 this.game.add.existing(this.backgroundSprite);
 
             for (var i = 0; i < this.buttons.length; i++) {
-                this.game.add.existing(this.buttons[i]);
+                if (this.buttons[i])
+                    this.game.add.existing(this.buttons[i]);
                 this.game.add.existing(this.buttonsText[i]);
             }
         };
@@ -100,7 +127,8 @@ var summ;
                 this.game.world.remove(this.backgroundSprite);
 
             for (var i = 0; i < this.buttons.length; i++) {
-                this.game.world.remove(this.buttons[i]);
+                if (this.buttons[i])
+                    this.game.world.remove(this.buttons[i]);
                 this.game.world.remove(this.buttonsText[i]);
             }
         };
@@ -110,24 +138,36 @@ var summ;
 
             if (!this.spreadAlongY)
                 for (var i = 0; i < this.buttons.length; i++) {
-                    totalButtonHeight += this.buttons[i].height;
+                    if (this.buttons[i])
+                        totalButtonHeight += this.buttons[i].height;
+                    else
+                        totalButtonHeight += this.buttonsText[i].height;
                 }
 
             var butHeightCumulative = 0;
             for (var i = 0; i < this.buttons.length; i++) {
-                this.buttons[i].x = this.menuBox.centerX;
+                var workingElement;
+                if (this.buttons[i])
+                    workingElement = this.buttons[i];
+                else
+                    workingElement = this.buttonsText[i];
+
+                workingElement.x = this.menuBox.centerX;
 
                 if (this.spreadAlongY)
-                    this.buttons[i].y = this.menuBox.top + (i + 1) * this.menuBox.height / (this.buttons.length + 2);
+                    workingElement.y = this.menuBox.top + (i + 1) * this.menuBox.height / (this.buttons.length + 2);
                 else {
-                    this.buttons[i].y = this.menuBox.centerY - totalButtonHeight / 2 + butHeightCumulative + this.buttons[i].height / 2;
+                    workingElement.y = this.menuBox.centerY - totalButtonHeight / 2 + butHeightCumulative + workingElement.height / 2;
                 }
-                this.buttonsText[i].position.setTo(this.buttons[i].x, this.buttons[i].y);
 
-                butHeightCumulative += this.buttons[i].height;
+                butHeightCumulative += workingElement.height;
+                workingElement.fixedToCamera = true;
 
-                this.buttons[i].fixedToCamera = true;
-                this.buttonsText[i].fixedToCamera = true;
+                //If the working element was the button, align the text on top of it
+                if (this.buttons[i]) {
+                    this.buttonsText[i].position.setTo(this.buttons[i].x, this.buttons[i].y);
+                    this.buttonsText[i].fixedToCamera = true;
+                }
             }
         };
 
