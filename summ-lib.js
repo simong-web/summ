@@ -81,7 +81,43 @@ var summ;
             this.updateButtonPositions();
         };
 
-        PauseMenu.prototype.addTextAsButton = function (text, onUpCallback, onOverCallback, onDownCallback, onOutCallback, callbackContext, setButtonTextInContext, scaleX, scaleY, textStyle) {
+        PauseMenu.prototype.addTextAsButton = function (text, callback, onOverSize, onDownSize, onOutSize, callbackContext, setButtonTextInContext, scaleX, scaleY, textStyle) {
+            scaleX = scaleX || this.defaultScaleX || 1;
+            scaleY = scaleY || this.defaultScaleY || 1;
+
+            if (!this.defaultTextStyle && !textStyle)
+                throw Error("No text style was given and no default has been specified");
+
+            var buttonText = new Phaser.Text(this.game, 0, 0, text, textStyle || this.defaultTextStyle);
+            buttonText.anchor.set(0.5, 0.5);
+            buttonText.scale.setTo(scaleX, scaleY);
+
+            if (callbackContext === 'self')
+                callbackContext = buttonText;
+
+            buttonText.inputEnabled = true;
+            if (callback)
+                buttonText.events.onInputUp.add(callback, callbackContext);
+            if (onOverSize)
+                buttonText.events.onInputOver.add(function () {
+                    this.scale.set(onOverSize);
+                }, buttonText);
+            if (onDownSize)
+                buttonText.events.onInputDown.add(function () {
+                    this.scale.set(onDownSize);
+                }, buttonText);
+            if (onOutSize)
+                buttonText.events.onInputOut.add(function () {
+                    this.scale.set(onOutSize);
+                }, buttonText);
+
+            this.buttons.push(null);
+            this.buttonsText.push(buttonText);
+
+            this.updateButtonPositions();
+        };
+
+        PauseMenu.prototype.addTextAsCustomizedButton = function (text, onUpCallback, onOverCallback, onDownCallback, onOutCallback, callbackContext, setButtonTextInContext, scaleX, scaleY, textStyle) {
             scaleX = scaleX || this.defaultScaleX || 1;
             scaleY = scaleY || this.defaultScaleY || 1;
 
