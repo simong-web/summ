@@ -55,9 +55,14 @@ var summ;
             scaleX = scaleX || this.defaultScaleX || 1;
             scaleY = scaleY || this.defaultScaleY || 1;
 
-            if (!this.defaultSpriteKey && !key)
-                throw Error("No image key was given and no default has been specified");
-
+            if (!this.defaultSpriteKey && !key) {
+                if (this.defaultTextStyle && !textStyle) {
+                    console.warn('No image key was given and no default has been specified, default to a text button');
+                    this.addTextAsButton(text, callback, null, null, null, null, scaleX, scaleY, textStyle);
+                    return;
+                } else
+                    throw Error("No image key was given and no default has been specified");
+            }
             if (!this.defaultTextStyle && !textStyle)
                 throw Error("No text style was given and no default has been specified");
 
