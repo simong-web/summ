@@ -51,14 +51,14 @@ var summ;
         });
 
 
-        PauseMenu.prototype.addButton = function (text, callback, callbackContext, addButtonTextToCallBack, key, overFrame, outFrame, downFrame, upFrame, scaleX, scaleY, textStyle) {
+        PauseMenu.prototype.addButton = function (text, callback, callbackContext, setButtonTextInContext, key, overFrame, outFrame, downFrame, upFrame, scaleX, scaleY, textStyle) {
             scaleX = scaleX || this.defaultScaleX || 1;
             scaleY = scaleY || this.defaultScaleY || 1;
 
             if (!this.defaultSpriteKey && !key) {
                 if (this.defaultTextStyle && !textStyle) {
                     console.warn('No image key was given and no default has been specified, default to a text button');
-                    this.addTextAsButton(text, callback, null, null, null, null, scaleX, scaleY, textStyle);
+                    this.addTextAsButton(text, callback, null, null, null, null, setButtonTextInContext, scaleX, scaleY, textStyle);
                     return;
                 } else
                     throw Error("No image key was given and no default has been specified");
@@ -70,7 +70,7 @@ var summ;
             buttonText.anchor.set(0.5, 0.5);
             this.buttonsText.push(buttonText);
 
-            if (addButtonTextToCallBack)
+            if (setButtonTextInContext)
                 callbackContext['buttonText'] = buttonText;
 
             var button = new Phaser.Button(this.game, 0, 0, key || this.defaultSpriteKey, callback, callbackContext, overFrame || this.defaultSpriteOver, outFrame || this.defaultSpriteOut, downFrame || this.defaultSpriteDown, upFrame || this.defaultSpriteUp);
@@ -81,7 +81,7 @@ var summ;
             this.updateButtonPositions();
         };
 
-        PauseMenu.prototype.addTextAsButton = function (text, onUpCallback, onOverCallback, onDownCallback, onOutCallback, callbackContext, scaleX, scaleY, textStyle) {
+        PauseMenu.prototype.addTextAsButton = function (text, onUpCallback, onOverCallback, onDownCallback, onOutCallback, callbackContext, setButtonTextInContext, scaleX, scaleY, textStyle) {
             scaleX = scaleX || this.defaultScaleX || 1;
             scaleY = scaleY || this.defaultScaleY || 1;
 
