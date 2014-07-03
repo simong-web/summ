@@ -345,4 +345,39 @@ var summ;
     })();
     summ.Preloader = Preloader;
 })(summ || (summ = {}));
+//#######################FullScreenSettings.ts###############################
+/// <reference path="build\phaser.d.ts" />
+var summ;
+(function (summ) {
+    var FullScreenSettings = (function () {
+        function FullScreenSettings() {
+        }
+        FullScreenSettings.apply = function (game) {
+            game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+            if (game.device.desktop)
+                game.scale.fullScreenTarget = document.getElementById('content');
+
+            game.scale.enterFullScreen.add(function () {
+                if (this.device.firefox) {
+                    this.canvas.style.position = 'absolute';
+                    this.canvas.style.top = '0';
+                    this.canvas.style.left = '0';
+                    this.canvas.style.right = '0';
+                    this.canvas.style.bottom = '0';
+                    this.canvas.style.margin = 'auto';
+                    this.canvas.style.width = 'auto !important';
+                    this.canvas.style.height = '100% !important';
+                }
+
+                this.scale.refresh();
+            }, game);
+
+            game.scale.leaveFullScreen.add(function () {
+                this.scale.refresh();
+            }, game);
+        };
+        return FullScreenSettings;
+    })();
+    summ.FullScreenSettings = FullScreenSettings;
+})(summ || (summ = {}));
 //# sourceMappingURL=summ-lib.js.map

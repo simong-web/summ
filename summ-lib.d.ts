@@ -40,3 +40,8 @@ declare module summ {
         static loadLocal(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
     }
 }
+declare module summ {
+    class FullScreenSettings {
+        static apply(game: Phaser.Game): void;
+    }
+}
