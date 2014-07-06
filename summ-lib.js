@@ -58,8 +58,7 @@ var summ;
             if (!this.defaultSpriteKey && !key) {
                 if (this.defaultTextStyle && !textStyle) {
                     console.warn('No image key was given and no default has been specified, default to a text button');
-                    this.addTextAsButton(text, callback, null, null, null, null, setButtonTextInContext, scaleX, scaleY, textStyle);
-                    return;
+                    return this.addTextAsButton(text, callback, null, null, null, null, setButtonTextInContext, scaleX, scaleY, textStyle);
                 } else
                     throw Error("No image key was given and no default has been specified");
             }
@@ -79,6 +78,7 @@ var summ;
             this.buttons.push(button);
 
             this.updateButtonPositions();
+            return;
         };
 
         PauseMenu.prototype.addTextAsButton = function (text, callback, onOverSize, onDownSize, onOutSize, callbackContext, setButtonTextInContext, scaleX, scaleY, textStyle) {
@@ -115,6 +115,7 @@ var summ;
             this.buttonsText.push(buttonText);
 
             this.updateButtonPositions();
+            return;
         };
 
         PauseMenu.prototype.addTextAsCustomizedButton = function (text, onUpCallback, onOverCallback, onDownCallback, onOutCallback, callbackContext, setButtonTextInContext, scaleX, scaleY, textStyle) {
@@ -145,6 +146,7 @@ var summ;
             this.buttonsText.push(buttonText);
 
             this.updateButtonPositions();
+            return;
         };
 
         PauseMenu.prototype.addExistingButton = function (buttonText, button) {
@@ -153,6 +155,7 @@ var summ;
 
             this.buttonsText.push(buttonText);
             this.updateButtonPositions();
+            return;
         };
 
         PauseMenu.prototype.showMenu = function () {
@@ -379,5 +382,79 @@ var summ;
         return FullScreenSettings;
     })();
     summ.FullScreenSettings = FullScreenSettings;
+})(summ || (summ = {}));
+//#######################Preloader.ts###############################
+/// <reference path="build\phaser.d.ts" />
+var __extends = this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
+var summ;
+(function (summ) {
+    var DepthSprite = (function (_super) {
+        __extends(DepthSprite, _super);
+        function DepthSprite(game, x, y, key, frame) {
+            _super.call(this, game, x, y, key, frame);
+            this._depth = 1;
+            this._lastDepth = 1;
+            this.anchor.set(0.5);
+
+            this.up = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
+            this.down = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
+            this.left = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
+            this.right = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
+            this.zoomIn = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
+            this.zoomOut = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+
+            this.game.physics.enable(this, Phaser.Physics.ARCADE);
+        }
+        DepthSprite.prototype.preUpdate = function () {
+            this._halfWidth = this.game.width / 2;
+            this._halfHeight = this.game.width / 2;
+            this.x -= this._halfWidth;
+            this.y -= this._halfHeight;
+            this.x *= this._lastDepth;
+            this.y *= this._lastDepth;
+            this.x += this._halfWidth;
+            this.y += this._halfHeight;
+
+            this.scale.setTo(this.scale.x * this._lastDepth, this.scale.y * this._lastDepth);
+            _super.prototype.preUpdate.call(this);
+        };
+
+        DepthSprite.prototype.update = function () {
+            if (this.up.isDown)
+                this.body.velocity.y--;
+            if (this.down.isDown)
+                this.body.velocity.y++;
+            if (this.left.isDown)
+                this.body.velocity.x--;
+            if (this.right.isDown)
+                this.body.velocity.x++;
+            if (this.zoomIn.isDown)
+                this._depth -= 0.01;
+            if (this.zoomOut.isDown)
+                this._depth += 0.01;
+        };
+
+        DepthSprite.prototype.postUpdate = function () {
+            _super.prototype.postUpdate.call(this);
+
+            this._lastDepth = this._depth;
+
+            this.x -= this._halfWidth;
+            this.y -= this._halfHeight;
+            this.x /= this._depth;
+            this.y /= this._depth;
+            this.x += this._halfWidth;
+            this.y += this._halfHeight;
+
+            this.scale.setTo(this.scale.x / this._depth, this.scale.y / this._depth);
+        };
+        return DepthSprite;
+    })(Phaser.Sprite);
+    summ.DepthSprite = DepthSprite;
 })(summ || (summ = {}));
 //# sourceMappingURL=summ-lib.js.map

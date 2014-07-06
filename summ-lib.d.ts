@@ -45,3 +45,21 @@ declare module summ {
         static apply(game: Phaser.Game): void;
     }
 }
+declare module summ {
+    class DepthSprite extends Phaser.Sprite {
+        private _depth;
+        private _lastDepth;
+        private _halfWidth;
+        private _halfHeight;
+        public up: any;
+        public down: any;
+        public left: any;
+        public right: any;
+        public zoomIn: any;
+        public zoomOut: any;
+        constructor(game: Phaser.Game, x: number, y: number, key?: string, frame?: any);
+        public preUpdate(): void;
+        public update(): void;
+        public postUpdate(): void;
+    }
+}
