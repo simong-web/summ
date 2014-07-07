@@ -393,6 +393,7 @@ var __extends = this.__extends || function (d, b) {
 };
 var summ;
 (function (summ) {
+    //Just a comment
     var DepthSprite = (function (_super) {
         __extends(DepthSprite, _super);
         function DepthSprite(game, x, y, key, frame) {
