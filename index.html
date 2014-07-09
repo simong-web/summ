@@ -36,6 +36,124 @@
         <li>nextState - a string specifying the new state to change to once the loading is finished</li>
     </ul>
     <p>
+        <strong>
+        summ.PauseMenu</strong></p>
+    <p>
+        <em>This object is used to create pause menus for games. It can also be used for generic menus.</em></p>
+    <h3>constructor(game: Phaser.Game, defaultSprite?: string, defaultOverFrame?: number, defaultOutFrame?: number, defaultDownFrame?: number, defaultUpFrame?: number, defaultScaleX?: number, defaultScaleY?: number, defaultTextStyle?: any, backgroundSprite?: Phaser.Sprite, stretchBackground?: boolean, menuBounds?: Phaser.Rectangle, spreadAlongY?: boolean);</h3>
+    <ul>
+        <li>game - the instance of Phaser.Game to load the images into.</li>
+        <li>defaultSprite- Specifiy the default sprite to use for all buttons. This should be a string pointing to the asset in phasers game cache</li>
+        <li>defaultOverFrame - Specifiy the default frame to use when the mouse is over the button</li>
+        <li>defaultOutFrame - Specifiy the default frame to use when the mouse is not over the button</li>
+        <li>defaultDownFrame - Specifiy the default frame to use when the button is pressed down</li>
+        <li>defaultUpFrame - Specifiy the default frame to use when the button is released</li>
+        <li>defaultScaleX - Specifiy the default value for the sprites x scale</li>
+        <li>defaultScaleY - Specifiy the default value for the sprites y scale</li>
+        <li>defaultTextStyle - Specifiy the default text style for all the buttons</li>
+        <li>backgroundSprite - Specifiy a sprite that will be placed behind the buttons.This should be a string pointing to the asset in phasers game cache</li>
+        <li>stretchBackground - If true, the background sprite will stretch to fit the menuBounds</li>
+        <li>menuBounds - A rectangle defining the square in which the menu will be placed. The buttons will be centered in this rect.</li>
+        <li>spreadAlongY - If true, the buttons will be spaced evenly along the entire height of the menuBounds. If false, they will group towards the middle.</li>
+    </ul>
+    <p>
+        &nbsp;</p>
+    <p>
+        <em>addButton - Add a button the the pause menu.</em></p>
+    <h3>public addButton(text: string, callback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, key?: string, overFrame?: number, outFrame?: number, downFrame?: number, upFrame?: number, scaleX?: number, scaleY?: number, textStyle?: any): void;</h3>
+    <ul>
+        <li>text - The text that will be displayed on the button.</li>
+        <li>callback - A function to be called when the button is released after being pressed.</li>
+        <li>callbackContext - The context to be used for the callback, usually <em>this</em>.</li>
+        <li>setButtonTextInContext - If true, a property named <em>buttonText</em> will be added to the callback context which points to the added buttons text.</li>
+        <li>key - A string specifying a sprite to use for the button. The default will be used if not specified.</li>
+        <li>overFrame -The frame to use when the mouse is over the button.</li>
+        <li>outFrame -Theframe to use when the mouse is not over the button.</li>
+        <li>downFrame-The frame to use when the button is pressed down.</li>
+        <li>upFrame-The frame to use when the button is released.</li>
+        <li>scaleX - The value for the sprites x scale</li>
+        <li>scaleY - The value for the sprites y scale</li>
+        <li>textStyle - The text style to use.</li>
+    </ul>
+    <p style="font-style: italic">
+        &nbsp;</p>
+    <p style="font-style: italic">
+        addTextAsButton - Add a button to the pause menu that only uses text.</p>
+    <h3>
+        public addTextAsButton(text: string, callback?: Function, onOverSize?: number, onDownSize?: number, onOutSize?: number, callbackContext?: Object, setButtonTextInContext?: boolean, scaleX?: number, scaleY?: number, textStyle?: any): void;</h3>
+    <ul>
+        <li>text - The text that will be displayed on the button.</li>
+        <li>callback - A function to be called when the button is released after being pressed.</li>
+        <li>onOverSize - The value to scale the text by when the mouse is over the text.</li>
+        <li>onDownSize - The value to scale the text by when the text is pressed down.</li>
+        <li>onOutSize - The value to scale the text by when the mouse is not over the text</li>
+        <li>callbackContext - The context to be used for the callback, usually <em>this</em>.</li>
+        <li>setButtonTextInContext - If true, a property named <em>buttonText</em> will be added to the callback context which points to the added buttons text.</li>
+        <li>scaleX - The value for the sprites x scale</li>
+        <li>scaleY - The value for the sprites y scale</li>
+        <li>textStyle - The text style to use.</li>
+    </ul>
+    <p>
+        &nbsp;</p>
+    <p style="font-style: italic">
+        addTextAsCustomizedButton - Add a button to the pause menu that only uses text. This button allows you to specify the callback functions for each state of the button.</p>
+    <h3>
+        addTextAsCustomizedButton(text: string, onUpCallback?: Function, onOverCallback?: Function, onDownCallback?: Function, onOutCallback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, scaleX?: number, scaleY?: number, textStyle?: any): void;</h3>
+    <ul>
+        <li>text - The text that will be displayed on the button.</li>
+        <li>onUpCallback- A function to be called when the button is released after being pressed.</li>
+        <li>onOverCallback- A function to be called when&nbsp; the mouse is over the text.</li>
+        <li>onDownCallback- A function to be called when the text is pressed down.</li>
+        <li>onOutCallback- A function to be called when the mouse is not over the text</li>
+        <li>callbackContext - The context to be used for the callback, usually <em>this</em>.</li>
+        <li>setButtonTextInContext - If true, a property named <em>buttonText</em> will be added to the callback context which points to the added buttons text.</li>
+        <li>scaleX - The value for the sprites x scale</li>
+        <li>scaleY - The value for the sprites y scale</li>
+        <li>textStyle - The text style to use.</li>
+    </ul>
+    <p>
+        &nbsp;</p>
+    <p style="font-style: italic">
+        addExistingButton - Add a button to the pause menu using an existing button and text.</p>
+    <h3>
+        public addExistingButton(buttonText: Phaser.Text, button?: Phaser.Button): void;</h3>
+    <ul>
+        <li>buttonText - An instance of Phaser.Text that will display over the button.</li>
+        <li>button - An instance of Phaser.Button to be displayed in the menu.</li>
+    </ul>
+    <p>
+        &nbsp;</p>
+    <p style="font-style: italic">
+        showMenu - Displays the pause menu.</p>
+    <h3>
+        public showMenu(): void;</h3>
+    <p>
+        &nbsp;</p>
+    <p style="font-style: italic">
+        hideMenu- Hides the pause menu.</p>
+    <h3>
+        public hideMenu(): void;</h3>
+    <p>
+        &nbsp;</p>
+    <p style="font-style: italic">
+        togglePause - toggles the pause menu on or off and pauses/resumes the game accordingly.</p>
+    <h3>
+        public togglePause(): void;</h3>
+    <p>
+        &nbsp;</p>
+        <strong>
+    <p>
+        summ.FullScreenSettings</p>
+    </strong>
+    <p style="font-style: italic">
+        apply - Applies the gitsumm recommend fullscreen settings to the game for best cross-browser compatabillity.</p>
+    <h3>
+        static apply(game: Phaser.Game): void;</h3>
+    <p>
+        &nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>
         &nbsp;</p>
     <p>
         &nbsp;</p>

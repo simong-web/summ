@@ -29,9 +29,9 @@ declare module summ {
         public addExistingButton(buttonText: Phaser.Text, button?: Phaser.Button): void;
         public showMenu(): void;
         public hideMenu(): void;
-        public updateButtonPositions(): void;
+        private updateButtonPositions();
         public togglePause(): void;
-        public handleClick(pointer: Phaser.Pointer): void;
+        private handleClick(pointer);
     }
 }
 declare module summ {
