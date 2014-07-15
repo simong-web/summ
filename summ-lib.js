@@ -288,7 +288,7 @@ var summ;
         Preloader.load = function (game, loadAssets, context, nextState) {
             game.state.add('gitbootload', {
                 preload: function () {
-                    game.load.image('gitpreloadbar', 'assets/loader.png');
+                    game.load.image('gitpreloadbar', 'http://gitsumm.com/files/_/simon/Preloader/loader.png');
                     game.load.image('gitpreloadlogo', 'http://gitsumm.com/files/blk/img/logo.png');
                 },
                 create: function () {
