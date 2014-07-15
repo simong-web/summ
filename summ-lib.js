@@ -1,5 +1,5 @@
 ﻿//#######################PauseMenu.ts###############################
-/// <reference path="build\phaser.d.ts" />
+/// <reference path="phaser.d.ts" />
 var summ;
 (function (summ) {
     var PauseMenu = (function () {
@@ -279,7 +279,7 @@ var summ;
     summ.PauseMenu = PauseMenu;
 })(summ || (summ = {}));
 //#######################Preloader.ts###############################
-/// <reference path="build\phaser.d.ts" />
+/// <reference path="phaser.d.ts" />
 var summ;
 (function (summ) {
     var Preloader = (function () {
@@ -349,7 +349,7 @@ var summ;
     summ.Preloader = Preloader;
 })(summ || (summ = {}));
 //#######################FullScreenSettings.ts###############################
-/// <reference path="build\phaser.d.ts" />
+/// <reference path="phaser.d.ts" />
 var summ;
 (function (summ) {
     var FullScreenSettings = (function () {
@@ -386,7 +386,7 @@ var summ;
     summ.FullScreenSettings = FullScreenSettings;
 })(summ || (summ = {}));
 //#######################Preloader.ts###############################
-/// <reference path="build\phaser.d.ts" />
+/// <reference path="phaser.d.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
