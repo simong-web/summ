@@ -376,8 +376,8 @@ var summ;
             }, game);
 
             game.scale.leaveFullScreen.add(function () {
-                this.fullScreenTarget.style['width'] = null;
-                this.fullScreenTarget.style['height'] = null;
+                this.game.scale.fullScreenTarget.style.width = "";
+                this.game.scale.fullScreenTarget.style.height = "";
                 this.scale.refresh();
             }, game);
         };
