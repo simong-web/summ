@@ -96,8 +96,13 @@ var summ;
                 callbackContext = buttonText;
 
             buttonText.inputEnabled = true;
-            if (callback)
+            if (callback) {
                 buttonText.events.onInputUp.add(callback, callbackContext);
+                if (onOverSize)
+                    buttonText.events.onInputUp.add(function () {
+                        this.scale.set(onOverSize);
+                    }, buttonText);
+            }
             if (onOverSize)
                 buttonText.events.onInputOver.add(function () {
                     this.scale.set(onOverSize);
