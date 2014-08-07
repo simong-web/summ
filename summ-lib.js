@@ -395,12 +395,12 @@ var summ;
                 this.scale.fullScreenTarget.style.width = "";
                 this.scale.fullScreenTarget.style.height = "";
 
+                this.scale.refresh();
+
                 if (document.domain.indexOf("gitsumm.com") > -1) {
                     game.canvas.style['width'] = '100%';
                     game.canvas.style['height'] = 'auto';
                 }
-
-                this.scale.refresh();
             }, game);
         };
         return FullScreenSettings;
