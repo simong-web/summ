@@ -95,6 +95,9 @@ var summ;
             if (callbackContext === 'self')
                 callbackContext = buttonText;
 
+            if (setButtonTextInContext)
+                callbackContext['buttonText'] = buttonText;
+
             buttonText.inputEnabled = true;
             if (callback) {
                 buttonText.events.onInputUp.add(callback, callbackContext);
@@ -136,6 +139,9 @@ var summ;
 
             if (callbackContext === 'self')
                 callbackContext = buttonText;
+
+            if (setButtonTextInContext)
+                callbackContext['buttonText'] = buttonText;
 
             buttonText.inputEnabled = true;
             if (onUpCallback)
@@ -365,6 +371,11 @@ var summ;
             if (game.device.desktop)
                 game.scale.fullScreenTarget = document.getElementById('content');
 
+            if (document.domain.indexOf("gitsumm.com") > -1) {
+                game.canvas.style['width'] = '100%';
+                game.canvas.style['height'] = 'auto';
+            }
+
             game.scale.enterFullScreen.add(function () {
                 if (this.device.firefox) {
                     this.canvas.style.position = 'absolute';
@@ -383,6 +394,12 @@ var summ;
             game.scale.leaveFullScreen.add(function () {
                 this.scale.fullScreenTarget.style.width = "";
                 this.scale.fullScreenTarget.style.height = "";
+
+                if (document.domain.indexOf("gitsumm.com") > -1) {
+                    game.canvas.style['width'] = '100%';
+                    game.canvas.style['height'] = 'auto';
+                }
+
                 this.scale.refresh();
             }, game);
         };

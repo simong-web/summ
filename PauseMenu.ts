@@ -126,7 +126,8 @@ module summ {
             if (callbackContext === 'self')
                 callbackContext = buttonText;
 
-            
+            if (setButtonTextInContext)
+                callbackContext['buttonText'] = buttonText;
 
             buttonText.inputEnabled = true;
             if (callback) {
@@ -161,6 +162,9 @@ module summ {
 
             if (callbackContext === 'self')
                 callbackContext = buttonText;
+
+            if (setButtonTextInContext)
+                callbackContext['buttonText'] = buttonText;
 
             buttonText.inputEnabled = true;
             if (onUpCallback)
