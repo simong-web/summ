@@ -376,6 +376,8 @@ var summ;
                 game.canvas.style['height'] = 'auto';
             }
 
+            document.body.style.margin = '0';
+
             game.scale.enterFullScreen.add(function () {
                 if (this.device.firefox) {
                     this.canvas.style.position = 'absolute';
