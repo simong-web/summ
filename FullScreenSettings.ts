@@ -93,7 +93,6 @@ module summ {
                         game.scale.fullScreenTarget.style['height'] = '100%';
                     }
 
-                    this.game.input.scale.setTo(this.game.width / this.width, this.game.height / this.height);
                 }
 
                 this.scale.refresh();
