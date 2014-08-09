@@ -380,6 +380,11 @@ var summ;
             if (document.domain.indexOf("gitsumm.com") > -1) {
                 game.canvas.style['width'] = '100%';
                 game.canvas.style['height'] = 'auto';
+
+                if (game.canvas.clientHeight > document.documentElement.clientHeight) {
+                    game.canvas.style['height'] = '100%';
+                    game.canvas.style['width'] = 'auto';
+                }
             }
 
             document.body.style.margin = '0';
@@ -408,7 +413,11 @@ var summ;
                 if (document.domain.indexOf("gitsumm.com") > -1) {
                     game.canvas.style['width'] = '100%';
                     game.canvas.style['height'] = 'auto';
-                    this.game.input.scale.setTo(this.game.width / this.width, this.game.height / this.height);
+
+                    if (game.canvas.clientHeight > document.documentElement.clientHeight) {
+                        game.canvas.style['height'] = '100%';
+                        game.canvas.style['width'] = 'auto';
+                    }
                 }
             }, game);
         };
