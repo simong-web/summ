@@ -378,7 +378,7 @@ var summ;
                 game.scale.fullScreenTarget = document.getElementById('content');
 
             if (document.domain.indexOf("gitsumm.com") > -1) {
-                if (game.width / game.height < document.documentElement.clientWidth / document.documentElement.clientHeight) {
+                if (game.width / game.height > document.documentElement.clientWidth / document.documentElement.clientHeight) {
                     game.canvas.style['width'] = '100%';
                     game.canvas.style['height'] = 'auto';
                 } else {
@@ -420,7 +420,7 @@ var summ;
                     game.canvas.style['height'] = '100%';
                     }
                     */
-                    if (game.width / game.height < document.documentElement.clientWidth / document.documentElement.clientHeight) {
+                    if (game.width / game.height > document.documentElement.clientWidth / document.documentElement.clientHeight) {
                         game.canvas.style['width'] = '100%';
                         game.canvas.style['height'] = 'auto';
                     } else {

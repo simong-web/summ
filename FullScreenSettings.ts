@@ -16,7 +16,7 @@ module summ {
 
             if (document.domain.indexOf("gitsumm.com") > -1) {
 
-                if (game.width / game.height < document.documentElement.clientWidth / document.documentElement.clientHeight) {
+                if (game.width / game.height > document.documentElement.clientWidth / document.documentElement.clientHeight) {
 
                     game.canvas.style['width'] = '100%';
                     game.canvas.style['height'] = 'auto';
@@ -63,7 +63,7 @@ module summ {
                     */
 
 
-                    if (game.width / game.height < document.documentElement.clientWidth / document.documentElement.clientHeight) {
+                    if (game.width / game.height > document.documentElement.clientWidth / document.documentElement.clientHeight) {
 
                         game.canvas.style['width'] = '100%';
                         game.canvas.style['height'] = 'auto';
