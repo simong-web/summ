@@ -24,6 +24,7 @@ module summ {
                 } else  {
                     game.canvas.style['width'] = 'auto';
                     game.canvas.style['height'] = '100%';
+                    game.scale.fullScreenTarget.style['height'] = '100%';
                 }
 
             }
@@ -31,15 +32,26 @@ module summ {
             document.body.style.margin = '0';
 
             game.scale.enterFullScreen.add(function () {
-                if (this.device.firefox) {
+                //if (this.device.firefox) {
                     this.canvas.style.position = 'absolute';
                     this.canvas.style.top = '0';
                     this.canvas.style.left = '0';
                     this.canvas.style.right = '0';
                     this.canvas.style.bottom = '0';
                     this.canvas.style.margin = 'auto';
-                    this.canvas.style.width = 'auto !important';
-                    this.canvas.style.height = '100% !important';
+
+                    //this.canvas.style.width = 'auto !important';
+                    //this.canvas.style.height = '100% !important';
+                //}
+
+                if (game.width / game.height > game.scale.fullScreenTarget.clientWidth / game.scale.fullScreenTarget.clientHeight) {
+
+                    game.canvas.style['width'] = '100%';
+                    game.canvas.style['height'] = 'auto';
+
+                } else {
+                    game.canvas.style['width'] = 'auto';
+                    game.canvas.style['height'] = '100%';
                 }
 
                 this.scale.refresh();
@@ -71,6 +83,7 @@ module summ {
                     } else {
                         game.canvas.style['width'] = 'auto';
                         game.canvas.style['height'] = '100%';
+                        game.scale.fullScreenTarget.style['height'] = '100%';
                     }
 
                     this.game.input.scale.setTo(this.game.width / this.width, this.game.height / this.height);
