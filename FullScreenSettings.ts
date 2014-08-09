@@ -14,6 +14,13 @@ module summ {
             if (game.device.desktop)
                 game.scale.fullScreenTarget = document.getElementById('content');
 
+            game.canvas.style.position = 'absolute';
+            game.canvas.style.top = '0';
+            game.canvas.style.left = '0';
+            game.canvas.style.right = '0';
+            game.canvas.style.bottom = '0';
+            game.canvas.style.margin = 'auto';
+
             if (document.domain.indexOf("gitsumm.com") > -1) {
 
                 if (game.width / game.height > document.documentElement.clientWidth / document.documentElement.clientHeight) {
@@ -32,7 +39,7 @@ module summ {
             document.body.style.margin = '0';
 
             game.scale.enterFullScreen.add(function () {
-                //if (this.device.firefox) {
+                /*if (this.device.firefox) {
                     this.canvas.style.position = 'absolute';
                     this.canvas.style.top = '0';
                     this.canvas.style.left = '0';
@@ -42,8 +49,8 @@ module summ {
 
                     //this.canvas.style.width = 'auto !important';
                     //this.canvas.style.height = '100% !important';
-                //}
-
+                }
+                */
                 if (game.width / game.height > game.scale.fullScreenTarget.clientWidth / game.scale.fullScreenTarget.clientHeight) {
 
                     game.canvas.style['width'] = '100%';
