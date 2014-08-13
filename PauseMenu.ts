@@ -146,7 +146,7 @@ module summ {
             this.buttonsText.push(buttonText);
 
             this.updateButtonPositions();
-            return;
+            return buttonText;
         }
 
         addTextAsCustomizedButton(text: string, onUpCallback?: Function, onOverCallback?: Function, onDownCallback?: Function, onOutCallback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, scaleX?: number, scaleY?: number, textStyle?: any) {
@@ -180,7 +180,7 @@ module summ {
             this.buttonsText.push(buttonText);
 
             this.updateButtonPositions();
-            return;
+            return buttonText;
         }
 
         addExistingButton(buttonText: Phaser.Text, button?: Phaser.Button) {
