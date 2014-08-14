@@ -33,6 +33,7 @@ declare module summ {
         public showMenu(): void;
         public hideMenu(): void;
         private updateButtonPositions();
+        public manualPause(pause?: boolean): void;
         public togglePause(): void;
         private handleClick(pointer);
     }

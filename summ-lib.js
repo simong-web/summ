@@ -240,6 +240,48 @@ var summ;
                 }
             }
         };
+        PauseMenu.prototype.manualPause = function (pause) {
+            pause = pause || true;
+
+            if (this.phaserPause && pause != this.phaserPause) {
+                var oldMute = this.game.sound.mute;
+                this.game.paused = !this.game.paused;
+                this.game.sound.mute = oldMute;
+
+                if (this.game.paused) {
+                    this.game.input.onUp.add(this.handleClick, this);
+                } else {
+                    this.game.input.onUp.remove(this.handleClick, this);
+                }
+            } else {
+                this._paused = pause;
+                if (this._paused) {
+                    //Pause game function
+                    this.game.time.events.pause();
+                    this.game.sound.pauseAll();
+                    this.preUpdateFunction = this.game.stage.preUpdate;
+                    this.game.stage.preUpdate = function () {
+                    };
+                    this.updateFunction = this.game.stage.update;
+                    this.game.stage.update = function () {
+                        this.game.time.events.pause();
+                    };
+                    this.tweenUpdate = this.game.tweens.update;
+                    this.game.tweens.update = function () {
+                        return false;
+                    };
+                    this.game.onPause.dispatch();
+                } else {
+                    //Resume game function
+                    this.game.sound.resumeAll();
+                    this.game.stage.preUpdate = this.preUpdateFunction;
+                    this.game.stage.update = this.updateFunction;
+                    this.game.tweens.update = this.tweenUpdate;
+                    this.game.time.events.resume();
+                    this.game.onResume.dispatch();
+                }
+            }
+        };
 
         PauseMenu.prototype.togglePause = function () {
             if (this.phaserPause) {
