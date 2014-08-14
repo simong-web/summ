@@ -32,6 +32,10 @@ module summ {
         defaultScaleX: number;
         defaultScaleY: number;
 
+        public onShowCallback: Function;
+        public onHideCallback: Function;
+        public showHideCallbackContext: Object;
+
         menuBox: Phaser.Rectangle;
         backgroundSprite: Phaser.Sprite;
 
@@ -44,7 +48,7 @@ module summ {
         phaserPause = false;
 
 
-        constructor(game: Phaser.Game, defaultSprite?: string, defaultOverFrame?: number, defaultOutFrame?: number, defaultDownFrame?: number, defaultUpFrame?: number, defaultScaleX?: number, defaultScaleY?: number, defaultTextStyle?: any, backgroundSprite?:Phaser.Sprite, stretchBackground?: boolean, menuBounds?: Phaser.Rectangle, spreadAlongY?: boolean) {
+        constructor(game: Phaser.Game, defaultSprite?: string, defaultOverFrame?: number, defaultOutFrame?: number, defaultDownFrame?: number, defaultUpFrame?: number, defaultScaleX?: number, defaultScaleY?: number, defaultTextStyle?: any, backgroundSprite?:any, stretchBackground?: boolean, menuBounds?: Phaser.Rectangle, spreadAlongY?: boolean) {
 
             this.game = game;
 
@@ -65,9 +69,16 @@ module summ {
             this.menuBox = menuBounds || this.game.camera.bounds;
 
             if (backgroundSprite) {
-                this.backgroundSprite = backgroundSprite;
+                if (typeof (backgroundSprite) === "string") {
+                    this.backgroundSprite = new Phaser.Sprite(this.game, 0, 0, backgroundSprite);
+                } else if (backgroundSprite.type == Phaser.SPRITE)
+                    this.backgroundSprite = backgroundSprite;
+            }
+
+            if (this.backgroundSprite) {
+
                 this.backgroundSprite.anchor.set(0.5, 0.5);
-                this.backgroundSprite.position.setTo(menuBounds.centerX, menuBounds.centerY);
+                this.backgroundSprite.position.setTo(this.menuBox.centerX, this.menuBox.centerY);
 
                 if (stretchBackground) {
                     this.backgroundSprite.width = this.menuBox.width;
@@ -203,6 +214,9 @@ module summ {
                     this.game.add.existing(this.buttons[i]);
                 this.game.add.existing(this.buttonsText[i]);
             }
+
+            if (this.onShowCallback)
+                this.onShowCallback.call(this.showHideCallbackContext);
         }
 
         hideMenu() {
@@ -215,6 +229,9 @@ module summ {
                     this.game.world.remove(this.buttons[i]);
                 this.game.world.remove(this.buttonsText[i]);
             }
+
+            if (this.onHideCallback)
+                this.onHideCallback.call(this.showHideCallbackContext);
         }
 
         private updateButtonPositions() {

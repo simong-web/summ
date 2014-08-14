@@ -25,9 +25,15 @@ var summ;
             this.menuBox = menuBounds || this.game.camera.bounds;
 
             if (backgroundSprite) {
-                this.backgroundSprite = backgroundSprite;
+                if (typeof (backgroundSprite) === "string") {
+                    this.backgroundSprite = new Phaser.Sprite(this.game, 0, 0, backgroundSprite);
+                } else if (backgroundSprite.type == Phaser.SPRITE)
+                    this.backgroundSprite = backgroundSprite;
+            }
+
+            if (this.backgroundSprite) {
                 this.backgroundSprite.anchor.set(0.5, 0.5);
-                this.backgroundSprite.position.setTo(menuBounds.centerX, menuBounds.centerY);
+                this.backgroundSprite.position.setTo(this.menuBox.centerX, this.menuBox.centerY);
 
                 if (stretchBackground) {
                     this.backgroundSprite.width = this.menuBox.width;
@@ -178,6 +184,9 @@ var summ;
                     this.game.add.existing(this.buttons[i]);
                 this.game.add.existing(this.buttonsText[i]);
             }
+
+            if (this.onShowCallback)
+                this.onShowCallback.call(this.showHideCallbackContext);
         };
 
         PauseMenu.prototype.hideMenu = function () {
@@ -189,6 +198,9 @@ var summ;
                     this.game.world.remove(this.buttons[i]);
                 this.game.world.remove(this.buttonsText[i]);
             }
+
+            if (this.onHideCallback)
+                this.onHideCallback.call(this.showHideCallbackContext);
         };
 
         PauseMenu.prototype.updateButtonPositions = function () {
