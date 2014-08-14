@@ -241,7 +241,8 @@ var summ;
             }
         };
         PauseMenu.prototype.manualPause = function (pause) {
-            pause = pause || true;
+            if (pause === undefined)
+                pause = true;
 
             if (this.phaserPause && pause != this.phaserPause) {
                 var oldMute = this.game.sound.mute;

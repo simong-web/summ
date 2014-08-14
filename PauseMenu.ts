@@ -276,7 +276,8 @@ module summ {
         }
         manualPause(pause?: boolean) {
 
-            pause = pause || true;
+            if(pause === undefined)
+                pause = true;
 
             if (this.phaserPause && pause != this.phaserPause) {
                 var oldMute = this.game.sound.mute;
