@@ -1,4 +1,5 @@
 ﻿/// <reference path="phaser.d.ts" />
+/// <reference path="jquery.d.ts" />
 declare module summ {
     class PauseMenu {
         public game: Phaser.Game;
@@ -36,6 +37,61 @@ declare module summ {
         public manualPause(pause?: boolean): void;
         public togglePause(): void;
         private handleClick(pointer);
+    }
+}
+declare module summ {
+    class Ad extends Phaser.Sprite {
+        public game: Phaser.Game;
+        public upTime: number;
+        public onEnd: Function;
+        public onEndContext: Object;
+        public clickToClear: boolean;
+        constructor(game: Phaser.Game, x: number, y: number, width?: number, height?: number, key?: any, frame?: any, startDelay?: number, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor?: boolean, stretchToFit?: boolean);
+        public show(): void;
+        public remove(): void;
+    }
+}
+declare module summ {
+    function urlParam(name: any): {};
+    class LeaderboardMessageStructure {
+        public action: string;
+        public leaderboardName: string;
+        public success: boolean;
+        public status: string;
+        public leaderboard: LeaderboardEntry[];
+        public leaderboards: LeaderboardEntry[][];
+    }
+    class LeaderboardEntry {
+        public name: string;
+        public score: number;
+    }
+    class LeaderboardMessages {
+        static sendScore(score: number, callback: Function, callbackContext: Object, timeout?: number): void;
+        static requestPlayer(callback: Function, callbackContext: Object, timeout?: number): void;
+        static requestScores(callback: Function, callbackContext: Object, timeout?: number): void;
+    }
+    class LeaderboardDisplay {
+        public leaderboardNames: string[];
+        public tabHeight: number;
+        public controlsWidth: number;
+        public slots: number;
+        public currentLeaderboard: number;
+        public currentPos: number;
+        public leaderboards: LeaderboardEntry[][];
+        public playerNames: Phaser.Text[];
+        public playerScores: Phaser.Text[];
+        public leaderboardGroup: Phaser.Group;
+        public onExitCallback: Function;
+        public onExitContext: Object;
+        constructor(game: Phaser.Game, tabImage: string, exitImage: string, jumpUpImage: string, stepUpImage: string, onExitCallback?: Function, onExitContext?: Object, tabHeight?: number, controlsWidth?: number, slots?: number, bounds?: Phaser.Rectangle, tabFont?: {
+            font: string;
+            fill: string;
+            align: string;
+        }, nameStyle?: any, scoreStyle?: any, leaderboardNames?: string[]);
+        public show(): void;
+        public hide(): void;
+        private nameOnUpFunction();
+        public populateLeaderboards(leaderboardNumber?: number, startingPos?: number): void;
     }
 }
 declare module summ {
