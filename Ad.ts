@@ -9,7 +9,7 @@ module summ {
         onEnd: Function;
         onEndContext: Object;
         clickToClear: boolean;
-
+        timerEvent: Phaser.TimerEvent;
 
         constructor(game: Phaser.Game, x:number,y:number,width?:number,height?:number, key?: any, frame?: any, startDelay?: number, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor: boolean = true, stretchToFit: boolean = false) {
             this.upTime = upTime||3000;
@@ -47,12 +47,15 @@ module summ {
             }, this);
 
             if (this.clickToClear)
-                this.game.input.onUp.addOnce(function () { this.remove() }, this); 
+                this.game.input.onUp.addOnce(function () {
+                    this.remove();
+                }, this); 
 
         }
 
         remove() {
-            if (this) {
+            if (this.game) {
+                this.game.time.events.remove
                 this.game.time.events.add(0, function () {
                     if (this) this.destroy();
                 }, this);

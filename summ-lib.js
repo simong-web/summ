@@ -396,7 +396,8 @@ var summ;
         };
 
         Ad.prototype.remove = function () {
-            if (this) {
+            if (this.game) {
+                this.game.time.events.remove;
                 this.game.time.events.add(0, function () {
                     if (this)
                         this.destroy();
