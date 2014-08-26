@@ -505,8 +505,8 @@ var summ;
         LeaderboardMessages.requestScores = function (callback, callbackContext, timeout) {
             if (typeof timeout === "undefined") { timeout = 0; }
             try  {
-                parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://www.gitsumm.com');
-                parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://1gitsumm.com');
+                //parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), '*');
             } catch (e) {
             }
             messageList.push({ action: 'get_leaderboard', callback: callback, context: callbackContext });

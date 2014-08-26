@@ -95,8 +95,8 @@ module summ {
 
         static requestScores(callback: Function, callbackContext: Object, timeout: number = 0) {
             try {
-            parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://www.gitsumm.com');
-            parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://1gitsumm.com');
+            //parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://www.gitsumm.com');
+            parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), '*');
             } catch(e) {
 
             }
