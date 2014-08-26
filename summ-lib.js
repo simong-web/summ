@@ -396,12 +396,14 @@ var summ;
         };
 
         Ad.prototype.remove = function () {
-            this.game.time.events.add(0, function () {
-                if (this)
-                    this.destroy();
-            }, this);
-            if (typeof this.onEnd === 'function') {
-                this.onEnd.call(this.onEndContext);
+            if (this) {
+                this.game.time.events.add(0, function () {
+                    if (this)
+                        this.destroy();
+                }, this);
+                if (typeof this.onEnd === 'function') {
+                    this.onEnd.call(this.onEndContext);
+                }
             }
         };
         return Ad;

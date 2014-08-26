@@ -51,12 +51,14 @@ module summ {
 
         }
 
-        remove() {            
-            this.game.time.events.add(0, function () {
-                if (this) this.destroy();
-            }, this);
-            if (typeof this.onEnd === 'function') {
-                this.onEnd.call(this.onEndContext);
+        remove() {
+            if (this) {
+                this.game.time.events.add(0, function () {
+                    if (this) this.destroy();
+                }, this);
+                if (typeof this.onEnd === 'function') {
+                    this.onEnd.call(this.onEndContext);
+                }
             }
         }
         
