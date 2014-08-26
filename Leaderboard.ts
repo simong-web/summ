@@ -54,8 +54,8 @@ module summ {
 
         public static sendScore(score: number, callback: Function, callbackContext: Object, timeout: number = 0) {
             try {
-                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
-                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://gitsumm.com');
+                //parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), '*');
             } catch(e) {
 
             }
@@ -85,8 +85,8 @@ module summ {
 
         static requestPlayer(callback: Function, callbackContext: Object, timeout: number = 0) {
             try {
-            parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
-            parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://gitsumm.com');
+            //parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
+            parent.postMessage(JSON.stringify({ action: 'get_player' }), '*');
             } catch(e) {
 
             }

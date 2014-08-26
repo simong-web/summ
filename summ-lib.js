@@ -466,8 +466,8 @@ var summ;
         LeaderboardMessages.sendScore = function (score, callback, callbackContext, timeout) {
             if (typeof timeout === "undefined") { timeout = 0; }
             try  {
-                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
-                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://gitsumm.com');
+                //parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), '*');
             } catch (e) {
             }
             messageList.push({ action: 'set_score', callback: callback, context: callbackContext });
@@ -495,8 +495,8 @@ var summ;
         LeaderboardMessages.requestPlayer = function (callback, callbackContext, timeout) {
             if (typeof timeout === "undefined") { timeout = 0; }
             try  {
-                parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
-                parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://gitsumm.com');
+                //parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'get_player' }), '*');
             } catch (e) {
             }
             messageList.push({ action: 'get_player', callback: callback, context: callbackContext });
