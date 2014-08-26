@@ -22,7 +22,7 @@ var summ;
 
             this.defaultTextStyle = defaultTextStyle;
 
-            this.menuBox = menuBounds || this.game.camera.bounds;
+            this.menuBox = menuBounds || new Phaser.Rectangle(0, 0, this.game.width, this.game.height);
 
             if (backgroundSprite) {
                 if (typeof (backgroundSprite) === "string") {
