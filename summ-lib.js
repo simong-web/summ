@@ -465,7 +465,11 @@ var summ;
         }
         LeaderboardMessages.sendScore = function (score, callback, callbackContext, timeout) {
             if (typeof timeout === "undefined") { timeout = 0; }
-            parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
+            try  {
+                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://gitsumm.com');
+            } catch (e) {
+            }
             messageList.push({ action: 'set_score', callback: callback, context: callbackContext });
             /*
             var ajaxURL = <string>summ.urlParam('ajax_url');
@@ -490,13 +494,21 @@ var summ;
 
         LeaderboardMessages.requestPlayer = function (callback, callbackContext, timeout) {
             if (typeof timeout === "undefined") { timeout = 0; }
-            parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
+            try  {
+                parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://gitsumm.com');
+            } catch (e) {
+            }
             messageList.push({ action: 'get_player', callback: callback, context: callbackContext });
         };
 
         LeaderboardMessages.requestScores = function (callback, callbackContext, timeout) {
             if (typeof timeout === "undefined") { timeout = 0; }
-            parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://www.gitsumm.com');
+            try  {
+                parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://gitsumm.com');
+            } catch (e) {
+            }
             messageList.push({ action: 'get_leaderboard', callback: callback, context: callbackContext });
             /*
             var ajaxURL = <string>summ.urlParam('ajax_url');

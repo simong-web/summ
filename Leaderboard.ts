@@ -53,8 +53,12 @@ module summ {
         
 
         public static sendScore(score: number, callback: Function, callbackContext: Object, timeout: number = 0) {
-            
-            parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
+            try {
+                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://gitsumm.com');
+            } catch(e) {
+
+            }
             messageList.push({action: 'set_score', callback: callback, context: callbackContext });
             
 
@@ -79,13 +83,23 @@ module summ {
         */
         }
 
-        static requestPlayer(callback: Function, callbackContext: Object, timeout:number = 0) {
+        static requestPlayer(callback: Function, callbackContext: Object, timeout: number = 0) {
+            try {
             parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
+            parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://gitsumm.com');
+            } catch(e) {
+
+            }
             messageList.push({ action: 'get_player', callback: callback, context: callbackContext });
         }
 
         static requestScores(callback: Function, callbackContext: Object, timeout: number = 0) {
+            try {
             parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://www.gitsumm.com');
+            parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), 'http://gitsumm.com');
+            } catch(e) {
+
+            }
             messageList.push({ action: 'get_leaderboard', callback: callback, context: callbackContext });
             /*
             var ajaxURL = <string>summ.urlParam('ajax_url');
