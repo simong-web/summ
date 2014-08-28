@@ -261,14 +261,8 @@ module summ {
 
         show() {
             LeaderboardMessages.requestScores(function (message: summ.LeaderboardMessageStructure) {
-
-                for (var i = 0; i < message.leaderboards[0].length; i++) {
                     this.leaderboards = message.leaderboards;
                     this.populateLeaderboards.call(this, this.currentLeaderboard);
-                    // pauseMenu.addTextAsButton(message.leaderboards.leaderboard_all_time[i].name + "\t\t" + message.leaderboards.leaderboard_all_time[i].score);
-                }
-
-
             }, this);
 
             this.leaderboardGroup.visible = true;
