@@ -44,7 +44,9 @@ module summ {
     };
 
     export class LeaderboardEntry {
-        name: string; 
+        userID: number; 
+        display_name: string;
+        nice_name: string;
         score: number;
     }
 
@@ -286,10 +288,10 @@ module summ {
 
 
 
-                        this.playerNames[i].setText(this.leaderboards[leaderboardNumber][this.currentPos + i].name);
+                        this.playerNames[i].setText(this.leaderboards[leaderboardNumber][this.currentPos + i].display_name);
                         this.playerNames[i].events.onInputUp.removeAll();
                         this.playerNames[i].events.onInputUp.add(this.nameOnUpFunction, this);
-                        this.playerNames[i].events.onInputUp.add(function () { window.open(this, '_blank') }, 'http://gitsumm.com/live/members/' + this.leaderboards[leaderboardNumber][this.currentPos + i].name);
+                        this.playerNames[i].events.onInputUp.add(function () { window.open(this, '_blank') }, 'http://gitsumm.com/live/members/' + this.leaderboards[leaderboardNumber][this.currentPos + i].nice_name);
                         this.playerScores[i].setText(""+this.leaderboards[leaderboardNumber][this.currentPos + i].score);
                     } else {
                         this.playerNames[i].setText("");

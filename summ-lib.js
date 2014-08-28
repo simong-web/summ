@@ -676,12 +676,12 @@ var summ;
                 for (var i = 0; i < this.playerNames.length; i++) {
                     this.playerNames[i].events.onInputUp.removeAll(this.leaderboards);
                     if (this.currentPos + i < this.leaderboards[leaderboardNumber].length) {
-                        this.playerNames[i].setText(this.leaderboards[leaderboardNumber][this.currentPos + i].name);
+                        this.playerNames[i].setText(this.leaderboards[leaderboardNumber][this.currentPos + i].display_name);
                         this.playerNames[i].events.onInputUp.removeAll();
                         this.playerNames[i].events.onInputUp.add(this.nameOnUpFunction, this);
                         this.playerNames[i].events.onInputUp.add(function () {
                             window.open(this, '_blank');
-                        }, 'http://gitsumm.com/live/members/' + this.leaderboards[leaderboardNumber][this.currentPos + i].name);
+                        }, 'http://gitsumm.com/live/members/' + this.leaderboards[leaderboardNumber][this.currentPos + i].nice_name);
                         this.playerScores[i].setText("" + this.leaderboards[leaderboardNumber][this.currentPos + i].score);
                     } else {
                         this.playerNames[i].setText("");
