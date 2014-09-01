@@ -873,16 +873,18 @@ var summ;
             this._depth = 1;
             this._lastDepth = 1;
             this.anchor.set(0.5);
-
-            this.up = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
-            this.down = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
-            this.left = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
-            this.right = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
-            this.zoomIn = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
-            this.zoomOut = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-
-            this.game.physics.enable(this, Phaser.Physics.ARCADE);
         }
+        Object.defineProperty(DepthSprite.prototype, "depth", {
+            get: function () {
+                return this._depth;
+            },
+            set: function (value) {
+                this._depth = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+
         DepthSprite.prototype.preUpdate = function () {
             this._halfWidth = this.game.width / 2;
             this._halfHeight = this.game.width / 2;
@@ -898,18 +900,6 @@ var summ;
         };
 
         DepthSprite.prototype.update = function () {
-            if (this.up.isDown)
-                this.body.velocity.y--;
-            if (this.down.isDown)
-                this.body.velocity.y++;
-            if (this.left.isDown)
-                this.body.velocity.x--;
-            if (this.right.isDown)
-                this.body.velocity.x++;
-            if (this.zoomIn.isDown)
-                this._depth -= 0.01;
-            if (this.zoomOut.isDown)
-                this._depth += 0.01;
         };
 
         DepthSprite.prototype.postUpdate = function () {

@@ -7,32 +7,24 @@ module summ {
 
     export class DepthSprite extends Phaser.Sprite {
 
-        
         private _depth: number = 1; //distance away
+        get depth(): number {
+            return this._depth;
+        }
+        set depth(value: number) {
+            this._depth = value;
+        }
+
+
         private _lastDepth: number = 1;
         private _halfWidth: number;
         private _halfHeight: number;
 
-        up;
-        down;
-        left;
-        right;
-        zoomIn;
-        zoomOut;
+
 
         constructor(game: Phaser.Game, x: number, y: number, key?: string, frame?: any) {
             super(game, x, y, key, frame);
             this.anchor.set(0.5);
-
-            this.up = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
-            this.down = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
-            this.left= this.game.input.keyboard.addKey(Phaser.Keyboard.A);
-            this.right = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
-            this.zoomIn = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
-            this.zoomOut = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-
-            this.game.physics.enable(this, Phaser.Physics.ARCADE);
-
         }
     
         preUpdate() {
@@ -50,12 +42,7 @@ module summ {
         }
 
         update() {
-            if (this.up.isDown) this.body.velocity.y--;
-            if (this.down.isDown) this.body.velocity.y++;
-            if (this.left.isDown) this.body.velocity.x--;
-            if (this.right.isDown) this.body.velocity.x++;
-            if (this.zoomIn.isDown) this._depth -= 0.01;
-            if (this.zoomOut.isDown) this._depth += 0.01;
+
 
         }
         
