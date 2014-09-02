@@ -445,20 +445,20 @@ var summ;
                         messageList.splice(i, 1);
 
                         var secondArg;
-                        if (reply.action == 'send_score')
-                            if (message.status[0] == 'higher') {
+                        if (reply.action == 'set_score')
+                            if (reply.status[0] == 'higher') {
                                 secondArg = "Congratulations! You beat your all time high score!";
-                            } else if (message.status[1] == 'higher') {
+                            } else if (reply.status[1] == 'higher') {
                                 secondArg = "Great Work! You beat your monthly high score!";
-                            } else if (message.status[2] == 'higher') {
+                            } else if (reply.status[2] == 'higher') {
                                 secondArg = "Nice Work! You beat your weekly high score!";
-                            } else if (message.status[0] == 'added') {
+                            } else if (reply.status[0] == 'added') {
                                 secondArg = "Check out your score on the leaderboards!";
-                            } else if (message.status[1] == 'added') {
+                            } else if (reply.status[1] == 'added') {
                                 secondArg = "Check out your new score on the monthly leaderboard!";
-                            } else if (message.status[2] == 'added') {
+                            } else if (reply.status[2] == 'added') {
                                 secondArg = "Check out your new score on the weekly leaderboard!";
-                            } else if (message.status[2] == 'not_higher') {
+                            } else if (reply.status[2] == 'not_higher') {
                                 secondArg = "Try again to beat your old score!";
                             }
 
