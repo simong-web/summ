@@ -25,7 +25,26 @@ module summ {
                     if (messageList[i].type = reply.action) {
                         var message = messageList[i];
                         messageList.splice(i, 1);
-                        message.callback.call(message.context, reply);
+
+                        var secondArg;
+                        if (reply.action = 'send_score')
+                            if (message.status[0] == 'higher') {
+                                secondArg = "Congratulations! You beat your all time high score!";
+                            } else if (message.status[1] == 'higher') {
+                                secondArg = "Great Work! You beat your monthly high score!";
+                            } else if (message.status[2] == 'higher') {
+                                secondArg = "Nice Work! You beat your weekly high score!";
+                            } else if (message.status[0] == 'added') {
+                                secondArg = "Check out your score on the leaderboards!";
+                            } else if (message.status[1] == 'added') {
+                                secondArg = "Check out your new score on the monthly leaderboard!";
+                            } else if (message.status[2] == 'added') {
+                                secondArg = "Check out your new score on the weekly leaderboard!";
+                            } else if (message.status[2] == 'not_higher') {
+                                secondArg = "Try again to beat your old score!";
+                            }
+
+                        message.callback.call(message.context, reply,secondArg);
                         return;
                     }
                 }

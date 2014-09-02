@@ -20,16 +20,26 @@ module summ {
         private _halfWidth: number;
         private _halfHeight: number;
 
+        private _xHorizon: number;
+        private _yHorizon: number;
+
+        xHorizon: number;
+        yHorizon: number;
+
 
 
         constructor(game: Phaser.Game, x: number, y: number, key?: string, frame?: any) {
             super(game, x, y, key, frame);
             this.anchor.set(0.5);
+            this.xHorizon = this.game.width / 2;
+            this.yHorizon = this.game.height / 2;
+            this._xHorizon = this.xHorizon;
+            this._yHorizon = this.yHorizon;
         }
     
         preUpdate() {
             this._halfWidth = this.game.width / 2;
-            this._halfHeight = this.game.width / 2;
+            this._halfHeight = this.game.height / 2;
             this.x -= this._halfWidth;
             this.y -= this._halfHeight;
             this.x *= this._lastDepth;

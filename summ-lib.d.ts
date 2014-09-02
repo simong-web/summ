@@ -1,5 +1,4 @@
 ﻿/// <reference path="phaser.d.ts" />
-/// <reference path="jquery.d.ts" />
 declare module summ {
     class PauseMenu {
         public game: Phaser.Game;
@@ -53,51 +52,6 @@ declare module summ {
     }
 }
 declare module summ {
-    function urlParam(name: any): {};
-    class LeaderboardMessageStructure {
-        public action: string;
-        public leaderboardName: string;
-        public success: boolean;
-        public status: string;
-        public leaderboard: LeaderboardEntry[];
-        public leaderboards: LeaderboardEntry[][];
-    }
-    class LeaderboardEntry {
-        public userID: number;
-        public display_name: string;
-        public nice_name: string;
-        public score: number;
-    }
-    class LeaderboardMessages {
-        static sendScore(score: number, callback: Function, callbackContext: Object, timeout?: number): void;
-        static requestPlayer(callback: Function, callbackContext: Object, timeout?: number): void;
-        static requestScores(callback: Function, callbackContext: Object, timeout?: number): void;
-    }
-    class LeaderboardDisplay {
-        public leaderboardNames: string[];
-        public tabHeight: number;
-        public controlsWidth: number;
-        public slots: number;
-        public currentLeaderboard: number;
-        public currentPos: number;
-        public leaderboards: LeaderboardEntry[][];
-        public playerNames: Phaser.Text[];
-        public playerScores: Phaser.Text[];
-        public leaderboardGroup: Phaser.Group;
-        public onExitCallback: Function;
-        public onExitContext: Object;
-        constructor(game: Phaser.Game, tabImage: string, exitImage: string, jumpUpImage: string, stepUpImage: string, onExitCallback?: Function, onExitContext?: Object, tabHeight?: number, controlsWidth?: number, slots?: number, bounds?: Phaser.Rectangle, tabFont?: {
-            font: string;
-            fill: string;
-            align: string;
-        }, nameStyle?: any, scoreStyle?: any, leaderboardNames?: string[]);
-        public show(): void;
-        public hide(): void;
-        private nameOnUpFunction();
-        public populateLeaderboards(leaderboardNumber?: number, startingPos?: number): void;
-    }
-}
-declare module summ {
     class Preloader {
         static load(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
         static loadLocal(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;
@@ -115,6 +69,10 @@ declare module summ {
         private _lastDepth;
         private _halfWidth;
         private _halfHeight;
+        private _xHorizon;
+        private _yHorizon;
+        public xHorizon: number;
+        public yHorizon: number;
         constructor(game: Phaser.Game, x: number, y: number, key?: string, frame?: any);
         public preUpdate(): void;
         public update(): void;
