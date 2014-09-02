@@ -23,6 +23,7 @@ module summ {
         private updateFunction;
         private tweenUpdate;
         private timeUpdate;
+        private stateUpdate;
         
         defaultSpriteKey: string;
         defaultSpriteOver: number;
@@ -345,6 +346,10 @@ module summ {
                     this.game.stage.preUpdate = function () { };
                     this.updateFunction = this.game.stage.update;
                     this.game.stage.update = function () { this.game.time.events.pause(); };
+
+                    this.stateUpdate = this.game.state.update;
+                    this.game.state.update = function () { };
+
                     this.tweenUpdate = this.game.tweens.update;
                     this.game.tweens.update = function () {return false };
                     this.game.onPause.dispatch();
@@ -358,6 +363,9 @@ module summ {
                     this.game.sound.resumeAll();
                     this.game.stage.preUpdate = this.preUpdateFunction;
                     this.game.stage.update = this.updateFunction;
+
+                    this.game.state.update = this.stateUpdate;
+
                     this.game.tweens.update = this.tweenUpdate;
                     this.game.time.events.resume();
                     this.game.onResume.dispatch();

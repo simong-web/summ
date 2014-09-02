@@ -9,6 +9,7 @@ declare module summ {
         private updateFunction;
         private tweenUpdate;
         private timeUpdate;
+        private stateUpdate;
         public defaultSpriteKey: string;
         public defaultSpriteOver: number;
         public defaultSpriteOut: number;
