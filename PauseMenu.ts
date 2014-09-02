@@ -370,9 +370,20 @@ module summ {
         }
 
         private handleClick(pointer: Phaser.Pointer) {
+
+            for (var i = 0; i < this.buttonsText.length; i++) {
+                if (this.buttons[i]) {
+                    if (this.buttons[i].getBounds().contains(pointer.x, pointer.y)) {
+                        this.buttons[i].onInputUpHandler(this.buttons[i], pointer, true)
+                    }
+                } else if (this.buttonsText[i].getBounds().contains(pointer.x, pointer.y)) {
+                    this.buttonsText[i].events.onInputUp.dispatch(this.buttonsText[i], pointer, true);
+                }
+            }
+
             this.buttons.forEach(function (button: Phaser.Button) {
                 if (button.getBounds().contains(pointer.x, pointer.y)) {
-                    button.onInputUpHandler(this,pointer,true)
+                    button.onInputUpHandler(button,pointer,true)
                 }
             }, this);
         }
