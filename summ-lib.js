@@ -445,7 +445,7 @@ var summ;
                         messageList.splice(i, 1);
 
                         var secondArg;
-                        if (reply.action = 'send_score')
+                        if (reply.action == 'send_score')
                             if (message.status[0] == 'higher') {
                                 secondArg = "Congratulations! You beat your all time high score!";
                             } else if (message.status[1] == 'higher') {
