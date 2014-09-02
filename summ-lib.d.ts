@@ -10,6 +10,7 @@ declare module summ {
         private tweenUpdate;
         private timeUpdate;
         private stateUpdate;
+        private stagePostUpdate;
         public defaultSpriteKey: string;
         public defaultSpriteOver: number;
         public defaultSpriteOut: number;
