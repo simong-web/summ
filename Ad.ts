@@ -11,7 +11,7 @@ module summ {
         clickToClear: boolean;
         timerEvent: Phaser.TimerEvent;
 
-        constructor(game: Phaser.Game, x:number,y:number,width?:number,height?:number, key?: any, frame?: any, startDelay?: number,link?: string, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor: boolean = true, stretchToFit: boolean = false) {
+        constructor(game: Phaser.Game, x: number, y: number, width?: number, height?: number, key?: any, frame?: any, startDelay?: number, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor: boolean = true, stretchToFit: boolean = false, link?: string) {
             this.upTime = upTime||3000;
             this.onEnd = onEnd;
             this.onEndContext = onEndContext;

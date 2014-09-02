@@ -355,7 +355,7 @@ var summ;
 (function (summ) {
     var Ad = (function (_super) {
         __extends(Ad, _super);
-        function Ad(game, x, y, width, height, key, frame, startDelay, link, upTime, onEnd, onEndContext, clickToClear, centerAnchor, stretchToFit) {
+        function Ad(game, x, y, width, height, key, frame, startDelay, upTime, onEnd, onEndContext, clickToClear, centerAnchor, stretchToFit, link) {
             if (typeof centerAnchor === "undefined") { centerAnchor = true; }
             if (typeof stretchToFit === "undefined") { stretchToFit = false; }
             this.upTime = upTime || 3000;
