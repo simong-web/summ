@@ -11,13 +11,20 @@ module summ {
         clickToClear: boolean;
         timerEvent: Phaser.TimerEvent;
 
-        constructor(game: Phaser.Game, x:number,y:number,width?:number,height?:number, key?: any, frame?: any, startDelay?: number, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor: boolean = true, stretchToFit: boolean = false) {
+        constructor(game: Phaser.Game, x:number,y:number,width?:number,height?:number, key?: any, frame?: any, startDelay?: number,link?: string, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor: boolean = true, stretchToFit: boolean = false) {
             this.upTime = upTime||3000;
             this.onEnd = onEnd;
             this.onEndContext = onEndContext;
             this.clickToClear = clickToClear || true;
 
             super(game, x, y, key, frame);
+
+            if(link) {
+                this.inputEnabled = true;
+                this.events.onInputUp.addOnce(function () {
+                    window.open(link, '_blank');
+                }, this);
+            }
 
             if (!stretchToFit) {
                 var multiplier = Math.min((height / this.height), (width / this.width));

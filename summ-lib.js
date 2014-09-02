@@ -355,7 +355,7 @@ var summ;
 (function (summ) {
     var Ad = (function (_super) {
         __extends(Ad, _super);
-        function Ad(game, x, y, width, height, key, frame, startDelay, upTime, onEnd, onEndContext, clickToClear, centerAnchor, stretchToFit) {
+        function Ad(game, x, y, width, height, key, frame, startDelay, link, upTime, onEnd, onEndContext, clickToClear, centerAnchor, stretchToFit) {
             if (typeof centerAnchor === "undefined") { centerAnchor = true; }
             if (typeof stretchToFit === "undefined") { stretchToFit = false; }
             this.upTime = upTime || 3000;
@@ -364,6 +364,13 @@ var summ;
             this.clickToClear = clickToClear || true;
 
             _super.call(this, game, x, y, key, frame);
+
+            if (link) {
+                this.inputEnabled = true;
+                this.events.onInputUp.addOnce(function () {
+                    window.open(link, '_blank');
+                }, this);
+            }
 
             if (!stretchToFit) {
                 var multiplier = Math.min((height / this.height), (width / this.width));

@@ -47,7 +47,7 @@ declare module summ {
         public onEndContext: Object;
         public clickToClear: boolean;
         public timerEvent: Phaser.TimerEvent;
-        constructor(game: Phaser.Game, x: number, y: number, width?: number, height?: number, key?: any, frame?: any, startDelay?: number, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor?: boolean, stretchToFit?: boolean);
+        constructor(game: Phaser.Game, x: number, y: number, width?: number, height?: number, key?: any, frame?: any, startDelay?: number, link?: string, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor?: boolean, stretchToFit?: boolean);
         public show(): void;
         public remove(): void;
     }
