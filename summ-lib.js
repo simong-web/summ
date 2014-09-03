@@ -614,6 +614,8 @@ var summ;
             this.leaderboardGroup = game.add.group();
             this.leaderboardGroup.name = 'Leaderboard';
 
+            this.hide();
+
             this.onExitCallback = onExitCallback || this.onExitCallback;
             this.onExitContext = onExitContext || this.onExitContext;
 
@@ -714,16 +716,14 @@ var summ;
                     // pauseMenu.addTextAsButton(message.leaderboards.leaderboard_all_time[i].name + "\t\t" + message.leaderboards.leaderboard_all_time[i].score);
                 }
             }, this);
-
-            this.hide();
         }
         LeaderboardDisplay.prototype.show = function () {
+            this.leaderboardGroup.visible = true;
+
             LeaderboardMessages.requestScores(function (message) {
                 this.leaderboards = message.leaderboards;
                 this.populateLeaderboards.call(this, this.currentLeaderboard);
             }, this);
-
-            this.leaderboardGroup.visible = true;
         };
 
         LeaderboardDisplay.prototype.hide = function () {

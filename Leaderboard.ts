@@ -169,6 +169,9 @@ module summ {
             this.leaderboardGroup = game.add.group();
             this.leaderboardGroup.name = 'Leaderboard';
 
+            this.hide();
+
+
             this.onExitCallback = onExitCallback || this.onExitCallback;
             this.onExitContext = onExitContext || this.onExitContext;
 
@@ -276,17 +279,16 @@ module summ {
 
             }, this);
 
-            this.hide();
-
         }
 
         show() {
+            this.leaderboardGroup.visible = true;
+
             LeaderboardMessages.requestScores(function (message: summ.LeaderboardMessageStructure) {
                     this.leaderboards = message.leaderboards;
                     this.populateLeaderboards.call(this, this.currentLeaderboard);
             }, this);
 
-            this.leaderboardGroup.visible = true;
         }
 
         hide() {
