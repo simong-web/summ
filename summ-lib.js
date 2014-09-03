@@ -478,7 +478,7 @@ var summ;
             var reply = JSON.parse(event.data);
             if (reply && reply.action) {
                 for (var i = 0; i < messageList.length; i++) {
-                    if (messageList[i].type = reply.action) {
+                    if (messageList[i].type == reply.action) {
                         var message = messageList[i];
                         messageList.splice(i, 1);
 
