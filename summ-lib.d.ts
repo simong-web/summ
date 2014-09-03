@@ -61,8 +61,14 @@ declare module summ {
         public leaderboardName: string;
         public success: boolean;
         public status: string;
+        public user: LeaderboardSubmissionUser;
         public leaderboard: LeaderboardEntry[];
         public leaderboards: LeaderboardEntry[][];
+    }
+    class LeaderboardSubmissionUser {
+        public userID: number;
+        public display_name: string;
+        public nice_name: string;
     }
     class LeaderboardEntry {
         public userID: number;
