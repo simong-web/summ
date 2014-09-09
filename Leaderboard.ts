@@ -160,9 +160,12 @@ module summ {
         callbackFunction: Function;
         callbackContext: Object;
 
-        constructor(game: Phaser.Game, bounds: Phaser.Rectangle, callbackFunction: Function, callbackContext: Object, scrollHead: string, scrollBar: string, horizontal: boolean = false) {
+        constructor(game: Phaser.Game, bounds: Phaser.Rectangle, callbackFunction: Function, callbackContext: Object, scrollHead: string, scrollBar: string, group?: Phaser.Group, horizontal: boolean = false) {
             super(game, bounds.x, bounds.y, scrollBar, null);
-            game.add.existing(this);
+            if (group)
+                group.add(this);
+            else 
+                game.add.existing(this);
 
             if (bounds.width != 0)
                 this.width = bounds.width;
@@ -175,7 +178,8 @@ module summ {
 
 
             this.head = game.add.sprite(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, scrollHead);
-            this.addChild(this.head);
+            if (group)
+                group.add(this.head);
             this.head.anchor.setTo(0.5, 0.5);
             this.head.inputEnabled = true;
             this.head.input.enableDrag(true, false, true, 240, bounds);
@@ -353,8 +357,7 @@ module summ {
                         this.populateLeaderboards();
                     }
                 }, this,
-                'lb_scroll_head', 'lb_scroll_bar', false);
-            this.leaderboardGroup.add(scrollBar);
+                'lb_scroll_head', 'lb_scroll_bar',this.leaderboardGroup, false);
 
             /*
             //OLD double jump up/down button layout

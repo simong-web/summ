@@ -34,7 +34,7 @@ declare module summ {
         public oldHeadPos: number;
         public callbackFunction: Function;
         public callbackContext: Object;
-        constructor(game: Phaser.Game, bounds: Phaser.Rectangle, callbackFunction: Function, callbackContext: Object, scrollHead: string, scrollBar: string, horizontal?: boolean);
+        constructor(game: Phaser.Game, bounds: Phaser.Rectangle, callbackFunction: Function, callbackContext: Object, scrollHead: string, scrollBar: string, group?: Phaser.Group, horizontal?: boolean);
         public update(): void;
         public updateValue(): void;
         public moveHeadToPoint(pointer: Phaser.Pointer): void;

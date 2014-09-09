@@ -154,11 +154,14 @@ var summ;
 
     var ScrollBar = (function (_super) {
         __extends(ScrollBar, _super);
-        function ScrollBar(game, bounds, callbackFunction, callbackContext, scrollHead, scrollBar, horizontal) {
+        function ScrollBar(game, bounds, callbackFunction, callbackContext, scrollHead, scrollBar, group, horizontal) {
             if (typeof horizontal === "undefined") { horizontal = false; }
             _super.call(this, game, bounds.x, bounds.y, scrollBar, null);
             this.oldHeadPos = 0;
-            game.add.existing(this);
+            if (group)
+                group.add(this);
+            else
+                game.add.existing(this);
 
             if (bounds.width != 0)
                 this.width = bounds.width;
@@ -170,7 +173,8 @@ var summ;
             this.horizontal = horizontal;
 
             this.head = game.add.sprite(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2, scrollHead);
-            this.addChild(this.head);
+            if (group)
+                group.add(this.head);
             this.head.anchor.setTo(0.5, 0.5);
             this.head.inputEnabled = true;
             this.head.input.enableDrag(true, false, true, 240, bounds);
@@ -324,8 +328,7 @@ var summ;
                     this.currentPos = Math.floor(value / 100 * (this.leaderboards[this.currentLeaderboard].length - 1));
                     this.populateLeaderboards();
                 }
-            }, this, 'lb_scroll_head', 'lb_scroll_bar', false);
-            this.leaderboardGroup.add(scrollBar);
+            }, this, 'lb_scroll_head', 'lb_scroll_bar', this.leaderboardGroup, false);
 
             /*
             //OLD double jump up/down button layout
