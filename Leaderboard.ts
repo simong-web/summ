@@ -187,7 +187,7 @@ module summ {
                 group.add(this.head);
             this.head.anchor.setTo(0.5, 0.5);
             this.head.inputEnabled = true;
-            this.head.input.enableDrag(true, false, true, 240, null,<any>this);
+            this.head.input.enableDrag(false, false, true, 240, new Phaser.Rectangle(this.x,this.y,this.width,this.height));
             this.head.input.allowVerticalDrag = true;
             this.head.input.allowHorizontalDrag = false;
             this.moveHeadToValue(0);
