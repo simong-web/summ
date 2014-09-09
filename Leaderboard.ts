@@ -344,7 +344,7 @@ module summ {
 
             var scrollBar = new ScrollBar(game,
                 new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2,
-                    bounds.y + tabHeight * 2,
+                    bounds.y + this.tabHeight * 2,
                     0,
                     bounds.height - this.tabHeight - this.controlsWidth * 2),
                 function (value: number) {
