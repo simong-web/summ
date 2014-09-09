@@ -169,7 +169,7 @@ var summ;
 
             this.horizontal = horizontal;
 
-            this.head = game.add.image(bounds.x + bounds.width / 2, bounds.y + bounds.width / 2, scrollHead);
+            this.head = game.add.sprite(bounds.x + bounds.width / 2, bounds.y + bounds.width / 2, scrollHead);
             this.addChild(this.head);
             this.head.anchor.setTo(0.5, 0.5);
             this.head.inputEnabled = true;
@@ -234,7 +234,7 @@ var summ;
             this.value = value;
         };
         return ScrollBar;
-    })(Phaser.Image);
+    })(Phaser.Sprite);
     summ.ScrollBar = ScrollBar;
 
     var LeaderboardDisplay = (function () {

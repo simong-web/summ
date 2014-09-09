@@ -151,7 +151,7 @@ module summ {
 
     }
 
-    export class ScrollBar extends Phaser.Image {
+    export class ScrollBar extends Phaser.Sprite {
 
         public value: number;
         horizontal: boolean;
@@ -174,7 +174,7 @@ module summ {
             this.horizontal = horizontal;
 
 
-            this.head = game.add.image(bounds.x + bounds.width / 2, bounds.y + bounds.width / 2, scrollHead);
+            this.head = game.add.sprite(bounds.x + bounds.width / 2, bounds.y + bounds.width / 2, scrollHead);
             this.addChild(this.head);
             this.head.anchor.setTo(0.5, 0.5);
             this.head.inputEnabled = true;

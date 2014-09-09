@@ -27,7 +27,7 @@ declare module summ {
         static requestPlayer(callback: Function, callbackContext: Object, timeout?: number): void;
         static requestScores(callback: Function, callbackContext: Object, timeout?: number): void;
     }
-    class ScrollBar extends Phaser.Image {
+    class ScrollBar extends Phaser.Sprite {
         public value: number;
         public horizontal: boolean;
         public head: Phaser.Image;
