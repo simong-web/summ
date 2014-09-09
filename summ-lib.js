@@ -240,6 +240,7 @@ var summ;
 
                 this.head.y = Phaser.Math.clamp(this.y + headHalfHeight + effectiveLength * value / 100, this.y + headHalfHeight, this.y + this.height - headHalfHeight);
             }
+            this.oldHeadPos = this.horizontal ? this.head.x : this.head.y;
             this.value = value;
         };
         return ScrollBar;
