@@ -337,6 +337,7 @@ module summ {
             //New Scroll bar layout
             var stepUpButton = game.add.button(bounds.x + bounds.width, bounds.y + this.tabHeight, stepUpImage, function () {
                 this.currentPos = Math.max(this.currentPos - 1, 0);
+                scrollBar.moveHeadToValue(this.currentPos / (this.leaderboards[this.currentLeaderboard].length - 1) * 100);
                 this.populateLeaderboards();
             }, this, 0, 1, 2, 3, this.leaderboardGroup);
             stepUpButton.anchor.set(1, 0);
@@ -345,6 +346,7 @@ module summ {
 
             var stepDownButton = game.add.button(bounds.x + bounds.width, bounds.y + bounds.height, stepUpImage, function () {
                 this.currentPos = Math.min(this.currentPos + 1, this.leaderboards[this.currentLeaderboard].length - 1);
+                scrollBar.moveHeadToValue(this.currentPos / (this.leaderboards[this.currentLeaderboard].length - 1) * 100);
                 this.populateLeaderboards();
             }, this, 0, 1, 2, 3, this.leaderboardGroup);
             stepDownButton.anchor.set(1, 1);
