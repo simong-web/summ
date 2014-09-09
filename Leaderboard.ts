@@ -151,6 +151,99 @@ module summ {
 
     }
 
+    export class ScrollBar extends Phaser.Image {
+
+        public value: number;
+        horizontal: boolean;
+        head: Phaser.Image;
+        oldHeadPos = 0;
+        callbackFunction: Function;
+        callbackContext: Object;
+
+        constructor(game: Phaser.Game, bounds: Phaser.Rectangle, callbackFunction: Function, callbackContext: Object, scrollHead: string, scrollBar: string, horizontal: boolean = false) {
+            super(game, bounds.x, bounds.y, scrollBar, null);
+            game.add.existing(this);
+
+            if (bounds.width != 0)
+                this.width = bounds.width;
+            if (bounds.height != 0)
+                this.height = bounds.height;
+
+            this.inputEnabled = true;
+
+            this.horizontal = horizontal;
+
+
+            this.head = game.add.image(bounds.x + bounds.width / 2, bounds.y + bounds.width / 2, scrollHead);
+            this.addChild(this.head);
+            this.head.anchor.setTo(0.5, 0.5);
+            this.head.inputEnabled = true;
+            this.head.input.enableDrag(true, false, true, 240, bounds);
+            this.head.input.allowVerticalDrag = true;
+            this.head.input.allowHorizontalDrag = false;
+            this.moveHeadToValue(0);
+
+            
+            this.events.onInputDown.add(function (bar:Phaser.Image,pointer:Phaser.Pointer) {
+                this.moveHeadToPoint(pointer);
+            }, this);
+        }
+
+        update() {
+
+            var headPos = this.horizontal ? this.head.x : this.head.y;
+
+            if (headPos != this.oldHeadPos) {
+                this.updateValue();
+                this.callbackFunction.call(this.callbackContext,this.value);
+                this.oldHeadPos = headPos;
+            }
+        }
+
+        updateValue() {
+            if (this.horizontal) {
+                var effectiveLength = this.width - this.head.width;
+                var distFromStart = this.head.x - this.x - this.head.width / 2;
+                this.value = Phaser.Math.clamp(distFromStart / effectiveLength * 100, 0, 100);
+            } else {
+                var effectiveLength = this.height - this.head.height;
+                var distFromStart = this.head.y - this.y - this.head.height/ 2;
+                this.value = Phaser.Math.clamp(distFromStart / effectiveLength * 100, 0, 100);
+
+            }
+        }
+
+        moveHeadToPoint(pointer:Phaser.Pointer) {
+            if (this.horizontal) {
+                var headHalfWidth = this.head.width / 2;
+                this.head.x = Phaser.Math.clamp(pointer.x, this.x + headHalfWidth, this.x + this.width - headHalfWidth);
+            } else {
+                var headHalfHeight = this.head.height / 2;
+                this.head.y = Phaser.Math.clamp(pointer.y, this.y + headHalfHeight, this.y + this.height - headHalfHeight);
+            }
+        }
+
+        moveHeadToValue(value:number) {
+            value = Phaser.Math.clamp(value, 0, 100);
+
+          
+            if (this.horizontal) {
+                var effectiveLength = this.width - this.head.width;
+                var headHalfWidth = this.head.width / 2;
+
+                this.head.x = Phaser.Math.clamp(this.x + headHalfWidth + effectiveLength * value/100, this.x + headHalfWidth, this.x + this.width - headHalfWidth);
+            } else {
+                var effectiveLength = this.height - this.head.height;
+                var headHalfHeight = this.head.height / 2;
+
+                this.head.y = Phaser.Math.clamp(this.y + headHalfHeight + effectiveLength * value / 100, this.y + headHalfHeight, this.y + this.height - headHalfHeight);
+            }
+            this.value = value;
+
+        }
+    }
+
+
 
     export class LeaderboardDisplay {
         
@@ -159,8 +252,6 @@ module summ {
         tabHeight = 60;
         controlsWidth = 60;
         slots = 10;
-
-
 
         currentLeaderboard = 0;
         currentPos = 0;
@@ -171,7 +262,15 @@ module summ {
         onExitCallback: Function;
         onExitContext: Object;
 
+        entryBackgroundKey: string;
+
         constructor(game: Phaser.Game, tabImage: string, exitImage: string, jumpUpImage: string, stepUpImage: string, onExitCallback?: Function, onExitContext?: Object, tabHeight?: number, controlsWidth?: number, slots?: number, bounds?: Phaser.Rectangle, tabFont = { font: "bold 14px Arial", fill: "#ffffff", align: "middle" }, nameStyle: any = { font: "bold 16px Arial", fill: "#ffffff", align: "left" }, scoreStyle: any = { font: "bold 16px Arial", fill: "#ffffff", align: "right" }, leaderboardNames?: Array<string>) {
+
+            this.entryBackgroundKey = 'lb_entry';
+            exitImage = exitImage || 'lb_exit';
+            stepUpImage = stepUpImage || 'lb_up';
+            tabImage = tabImage || 'lb_tab';
+
 
             this.leaderboardGroup = game.add.group();
             this.leaderboardGroup.name = 'Leaderboard';
@@ -222,7 +321,37 @@ module summ {
             exitButton.width = this.controlsWidth;
             exitButton.height = this.tabHeight;
 
+            //New Scroll bar layout
+            var stepUpButton = game.add.button(bounds.x + bounds.width, bounds.y + this.tabHeight, stepUpImage, function () {
+                this.currentPos = Math.max(this.currentPos - 1, 0);
+                this.populateLeaderboards();
+            }, this, 0, 1, 2, 3, this.leaderboardGroup);
+            stepUpButton.anchor.set(1, 0);
+            stepUpButton.width = this.controlsWidth;
+            stepUpButton.height = this.controlsWidth;
 
+            var stepDownButton = game.add.button(bounds.x + bounds.width, bounds.y + bounds.height, stepUpImage, function () {
+                this.currentPos = Math.min(this.currentPos + 1, this.leaderboards[this.currentLeaderboard].length - 1);
+                this.populateLeaderboards();
+            }, this, 0, 1, 2, 3, this.leaderboardGroup);
+            stepDownButton.anchor.set(1, 1);
+            stepDownButton.width = this.controlsWidth;
+            stepDownButton.height = -this.controlsWidth;
+
+            var scrollBar = new ScrollBar(game,
+                new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2,
+                    bounds.y + tabHeight * 2,
+                    0,
+                    bounds.height - this.tabHeight - this.controlsWidth * 2),
+                function (value: number) {
+                    this.currentPos = Math.floor(value / 100 * (this.leaderboards[this.currentLeaderboard].length - 1));
+                    this.populateLeaderboards();
+                }, this,
+                'lb_scroll_head', 'lb_scroll_bar', false);
+            this.leaderboardGroup.add(scrollBar);
+
+            /*
+            //OLD double jump up/down button layout
             var jumpUpButton = game.add.button(bounds.x + bounds.width, bounds.y + (bounds.height-this.tabHeight) / 2 , jumpUpImage, function () {
                 this.currentPos = Math.max(this.currentPos - this.slots, 0);
                 this.populateLeaderboards();
@@ -230,6 +359,7 @@ module summ {
             jumpUpButton.anchor.set(1, 1);
             jumpUpButton.width = this.controlsWidth;
             jumpUpButton.height = this.tabHeight;
+            
 
             var stepUpButton = game.add.button(bounds.x + bounds.width, bounds.y + (bounds.height - this.tabHeight) / 2 + 1 * this.tabHeight,stepUpImage, function () {
                 this.currentPos = Math.max(this.currentPos - 1, 0);
@@ -247,6 +377,7 @@ module summ {
             stepDownButton.width = this.controlsWidth;
             stepDownButton.height = -this.tabHeight;
 
+            
             var jumpDownButton = game.add.button(bounds.x + bounds.width, bounds.y + (bounds.height - this.tabHeight) / 2 + 3 * this.tabHeight, jumpUpImage, function () {
                 this.currentPos = Math.min(this.currentPos + 10, this.leaderboards[this.currentLeaderboard].length-1);
                 this.populateLeaderboards();
@@ -254,7 +385,7 @@ module summ {
             jumpDownButton.anchor.set(1, 0);
             jumpDownButton.width = this.controlsWidth;
             jumpDownButton.height = -this.tabHeight;
-
+            */
             
 
             var yIncrement = (bounds.height - this.tabHeight) / this.slots;
@@ -287,6 +418,30 @@ module summ {
             }, this);
 
         }
+
+        static loadDefaults(game: Phaser.Game, local:boolean = false) {
+            var images = ['lb_background',
+                'lb_close',
+                'lb_down',
+                'lb_entry',
+                'lb_left_arrow',
+                'lb_scroll_bar',
+                'lb_scroll_head',
+                'lb_tab',
+                'lb_up',
+            ];
+
+            if (local) {
+                for (var alpha in images) {
+                    game.load.image(images[alpha], 'assets/' + images[alpha] + '.png');
+                }
+            } else {
+                for (var alpha in images) {
+                    game.load.image(images[alpha], 'http://gitsumm.com/files/_/simon/Leaderboad Assets/' + images[alpha] + '.png');
+                }
+            }
+        }
+
 
         show() {
             this.leaderboardGroup.visible = true;
