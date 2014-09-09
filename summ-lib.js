@@ -411,7 +411,7 @@ var summ;
                 }
             } else {
                 for (var alpha in images) {
-                    game.load.image(images[alpha], 'http://gitsumm.com/files/_/simon/Leaderboad Assets/' + images[alpha] + '.png');
+                    game.load.image(images[alpha], 'http://gitsumm.com/files/_/simon/Leaderboard Assets/' + images[alpha] + '.png');
                 }
             }
         };
