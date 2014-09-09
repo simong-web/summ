@@ -261,6 +261,7 @@ var summ;
             this.currentPos = 0;
             this.playerNames = new Array(this.slots);
             this.playerScores = new Array(this.slots);
+            this.playerBackgrounds = new Array(this.slots);
             this.entryBackgroundKey = 'lb_entry';
             exitImage = exitImage || 'lb_exit';
             stepUpImage = stepUpImage || 'lb_up';
@@ -378,17 +379,22 @@ var summ;
             var yStart = bounds.x + bounds.halfHeight - this.slots / 2 * yIncrement + this.tabHeight;
 
             for (var i = 0; i < this.slots; i++) {
+                this.playerBackgrounds[i] = game.add.sprite(bounds.x, yStart + yIncrement * i, this.entryBackgroundKey, null, this.leaderboardGroup);
+                this.playerBackgrounds[i].width = bounds.x + bounds.width - this.controlsWidth;
+                this.playerBackgrounds[i].height = yIncrement;
+                this.playerBackgrounds[i].anchor.set(0, 0.5);
+                this.playerBackgrounds[i].inputEnabled = true;
+                this.playerBackgrounds[i].events.onInputUp.add(this.nameOnUpFunction, this);
+                this.playerBackgrounds[i].events.onInputOver.add(function () {
+                }, this);
+                this.playerBackgrounds[i].events.onInputDown.add(function () {
+                }, this);
+                this.playerBackgrounds[i].events.onInputOut.add(function () {
+                }, this);
+
                 this.playerNames[i] = game.add.text(bounds.x, yStart + yIncrement * i, "Retrieving...", nameStyle, this.leaderboardGroup);
                 this.playerNames[i].anchor.set(0, 0.5);
                 this.playerNames[i].inputEnabled = true;
-
-                this.playerNames[i].events.onInputUp.add(this.nameOnUpFunction, this);
-                this.playerNames[i].events.onInputOver.add(function () {
-                }, this);
-                this.playerNames[i].events.onInputDown.add(function () {
-                }, this);
-                this.playerNames[i].events.onInputOut.add(function () {
-                }, this);
 
                 this.playerScores[i] = game.add.text(bounds.x + bounds.width - this.controlsWidth - 5, yStart + yIncrement * i, "----", scoreStyle, this.leaderboardGroup);
                 this.playerScores[i].anchor.set(1, 0.5);
@@ -451,16 +457,18 @@ var summ;
                     this.playerNames[i].events.onInputUp.removeAll(this.leaderboards);
                     if (this.currentPos + i < this.leaderboards[leaderboardNumber].length) {
                         this.playerNames[i].setText(this.leaderboards[leaderboardNumber][this.currentPos + i].display_name);
-                        this.playerNames[i].events.onInputUp.removeAll();
-                        this.playerNames[i].events.onInputUp.add(this.nameOnUpFunction, this);
-                        this.playerNames[i].events.onInputUp.add(function () {
+                        this.playerBackgrounds[i].visible = true;
+                        this.playerBackgrounds[i].events.onInputUp.removeAll();
+                        this.playerBackgrounds[i].events.onInputUp.add(this.nameOnUpFunction, this);
+                        this.playerBackgrounds[i].events.onInputUp.add(function () {
                             window.open(this, '_blank');
                         }, 'http://gitsumm.com/live/members/' + this.leaderboards[leaderboardNumber][this.currentPos + i].nice_name);
                         this.playerScores[i].setText("" + this.leaderboards[leaderboardNumber][this.currentPos + i].score);
                     } else {
                         this.playerNames[i].setText("");
-                        this.playerNames[i].events.onInputUp.removeAll();
-                        this.playerNames[i].events.onInputUp.add(this.nameOnUpFunction, this);
+                        this.playerBackgrounds[i].visible = false;
+                        this.playerBackgrounds[i].events.onInputUp.removeAll();
+                        this.playerBackgrounds[i].events.onInputUp.add(this.nameOnUpFunction, this);
                         this.playerScores[i].setText("");
                     }
                 }

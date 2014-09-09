@@ -50,6 +50,7 @@ declare module summ {
         public leaderboards: LeaderboardEntry[][];
         public playerNames: Phaser.Text[];
         public playerScores: Phaser.Text[];
+        public playerBackgrounds: Phaser.Sprite[];
         public leaderboardGroup: Phaser.Group;
         public onExitCallback: Function;
         public onExitContext: Object;
