@@ -320,8 +320,10 @@ var summ;
             stepDownButton.height = -this.controlsWidth;
 
             var scrollBar = new ScrollBar(game, new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2, bounds.y + tabHeight * 2, 0, bounds.height - this.tabHeight - this.controlsWidth * 2), function (value) {
-                this.currentPos = Math.floor(value / 100 * (this.leaderboards[this.currentLeaderboard].length - 1));
-                this.populateLeaderboards();
+                if (this.leaderboards) {
+                    this.currentPos = Math.floor(value / 100 * (this.leaderboards[this.currentLeaderboard].length - 1));
+                    this.populateLeaderboards();
+                }
             }, this, 'lb_scroll_head', 'lb_scroll_bar', false);
             this.leaderboardGroup.add(scrollBar);
 

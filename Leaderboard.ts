@@ -348,8 +348,10 @@ module summ {
                     0,
                     bounds.height - this.tabHeight - this.controlsWidth * 2),
                 function (value: number) {
-                    this.currentPos = Math.floor(value / 100 * (this.leaderboards[this.currentLeaderboard].length - 1));
-                    this.populateLeaderboards();
+                    if (this.leaderboards) {
+                        this.currentPos = Math.floor(value / 100 * (this.leaderboards[this.currentLeaderboard].length - 1));
+                        this.populateLeaderboards();
+                    }
                 }, this,
                 'lb_scroll_head', 'lb_scroll_bar', false);
             this.leaderboardGroup.add(scrollBar);
