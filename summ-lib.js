@@ -941,6 +941,7 @@ var summ;
                     this.load.setPreloadSprite(bar);
 
                     loadAssets.call(context, this.game);
+                    summ.LeaderboardDisplay.loadDefaults(this.game);
                 },
                 create: function () {
                     game.state.start(nextState);

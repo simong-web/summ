@@ -29,7 +29,8 @@ module summ {
                     //bar.width = game.width - game.width / 8;
                     this.load.setPreloadSprite(bar);
 
-                    loadAssets.call(context,this.game);
+                    loadAssets.call(context, this.game);
+                    summ.LeaderboardDisplay.loadDefaults(this.game);
 
                 },
                 create: function () {
