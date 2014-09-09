@@ -322,7 +322,7 @@ var summ;
             stepUpButton.width = this.controlsWidth;
             stepUpButton.height = this.controlsWidth;
 
-            var stepDownButton = game.add.button(bounds.x + bounds.width, bounds.y + bounds.height, stepUpImage, function () {
+            var stepDownButton = game.add.button(bounds.x + bounds.width, bounds.y + bounds.height - this.controlsWidth, stepUpImage, function () {
                 this.currentPos = Math.min(this.currentPos + 1, this.leaderboards[this.currentLeaderboard].length - 1);
                 scrollBar.moveHeadToValue(this.currentPos / (this.leaderboards[this.currentLeaderboard].length - 1) * 100);
                 this.populateLeaderboards();
@@ -331,7 +331,7 @@ var summ;
             stepDownButton.width = this.controlsWidth;
             stepDownButton.height = -this.controlsWidth;
 
-            var scrollBar = new ScrollBar(game, new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2, bounds.y + this.tabHeight * 2, 0, bounds.height - this.tabHeight - this.controlsWidth * 2), function (value) {
+            var scrollBar = new ScrollBar(game, new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2, bounds.y + this.tabHeight + this.controlsWidth, 0, bounds.height - this.tabHeight - this.controlsWidth * 2), function (value) {
                 if (this.leaderboards) {
                     this.currentPos = Math.floor(value / 100 * (this.leaderboards[this.currentLeaderboard].length - 1));
                     this.populateLeaderboards();
