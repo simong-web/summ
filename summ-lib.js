@@ -181,6 +181,9 @@ var summ;
             this.events.onInputDown.add(function (bar, pointer) {
                 this.moveHeadToPoint(pointer);
             }, this);
+
+            this.callbackFunction = callbackFunction;
+            this.callbackContext = callbackContext;
         }
         ScrollBar.prototype.update = function () {
             var headPos = this.horizontal ? this.head.x : this.head.y;

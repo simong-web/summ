@@ -187,6 +187,10 @@ module summ {
             this.events.onInputDown.add(function (bar:Phaser.Image,pointer:Phaser.Pointer) {
                 this.moveHeadToPoint(pointer);
             }, this);
+
+            this.callbackFunction = callbackFunction;
+            this.callbackContext = callbackContext;
+
         }
 
         update() {
