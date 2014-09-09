@@ -169,8 +169,13 @@ module summ {
 
             if (bounds.width != 0)
                 this.width = bounds.width;
+            else
+                this.anchor.x = 0.5;
+
             if (bounds.height != 0)
                 this.height = bounds.height;
+            else
+                this.anchor.y = 0.5;
 
             this.inputEnabled = true;
 
@@ -182,7 +187,7 @@ module summ {
                 group.add(this.head);
             this.head.anchor.setTo(0.5, 0.5);
             this.head.inputEnabled = true;
-            this.head.input.enableDrag(true, false, true, 240, bounds);
+            this.head.input.enableDrag(true, false, true, 240, null,<any>this);
             this.head.input.allowVerticalDrag = true;
             this.head.input.allowHorizontalDrag = false;
             this.moveHeadToValue(0);
