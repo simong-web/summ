@@ -412,7 +412,7 @@ module summ {
             for (var i = 0; i < this.slots; i++) {
 
                 this.playerBackgrounds[i] = game.add.sprite(bounds.x, yStart + yIncrement * i, this.entryBackgroundKey, null, this.leaderboardGroup);
-                this.playerBackgrounds[i].width = bounds.x + bounds.width - this.controlsWidth;
+                this.playerBackgrounds[i].width = bounds.x + bounds.width - this.controlsWidth -5;
                 this.playerBackgrounds[i].height = yIncrement;
                 this.playerBackgrounds[i].anchor.set(0, 0.5);
                 this.playerBackgrounds[i].inputEnabled = true;
