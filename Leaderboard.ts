@@ -281,6 +281,7 @@ module summ {
 
         constructor(game: Phaser.Game, tabImage: string, exitImage: string, jumpUpImage: string, stepUpImage: string, onExitCallback?: Function, onExitContext?: Object, tabHeight?: number, controlsWidth?: number, slots?: number, bounds?: Phaser.Rectangle, tabFont = { font: "bold 14px Arial", fill: "#ffffff", align: "middle" }, nameStyle: any = { font: "bold 16px Arial", fill: "#ffffff", align: "left" }, scoreStyle: any = { font: "bold 16px Arial", fill: "#ffffff", align: "right" }, leaderboardNames?: Array<string>) {
 
+            var backgroundKey = 'lb_background';
             this.entryBackgroundKey = 'lb_entry';
             exitImage = exitImage || 'lb_exit';
             stepUpImage = stepUpImage || 'lb_up';
@@ -309,6 +310,12 @@ module summ {
             bg.inputEnabled = true;
 
             bounds = bounds || new Phaser.Rectangle(100, 100, 460, 400);
+
+            var background = game.add.sprite(bounds.x, bounds.y, backgroundKey, null, this.leaderboardGroup);
+            background.width = bounds.width;
+            background.health = bounds.height;
+
+
 
             var xTabIncrement = (bounds.width - this.controlsWidth) / this.leaderboardNames.length;
             for (var i = 0; i < this.leaderboardNames.length; i++) {

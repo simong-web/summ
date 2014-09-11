@@ -262,6 +262,7 @@ var summ;
             this.playerNames = new Array(this.slots);
             this.playerScores = new Array(this.slots);
             this.playerBackgrounds = new Array(this.slots);
+            var backgroundKey = 'lb_background';
             this.entryBackgroundKey = 'lb_entry';
             exitImage = exitImage || 'lb_exit';
             stepUpImage = stepUpImage || 'lb_up';
@@ -288,6 +289,10 @@ var summ;
             bg.inputEnabled = true;
 
             bounds = bounds || new Phaser.Rectangle(100, 100, 460, 400);
+
+            var background = game.add.sprite(bounds.x, bounds.y, backgroundKey, null, this.leaderboardGroup);
+            background.width = bounds.width;
+            background.health = bounds.height;
 
             var xTabIncrement = (bounds.width - this.controlsWidth) / this.leaderboardNames.length;
             for (var i = 0; i < this.leaderboardNames.length; i++) {
