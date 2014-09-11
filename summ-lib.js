@@ -314,10 +314,10 @@ var summ;
                 button.width = xTabIncrement;
                 button.height = this.tabHeight;
                 var text = game.add.text(button.x + button.width / 2, button.y + button.height / 2, this.leaderboardNames[i], tabFont, this.leaderboardGroup);
-                text.anchor.set(0.5, 0);
+                text.anchor.set(0.5, 0.5);
             }
 
-            var exitButton = game.add.button(bounds.x + bounds.width, bounds.y, exitImage, function () {
+            var exitButton = game.add.button(bounds.x + bounds.width, bounds.y + 20, exitImage, function () {
                 this.hide();
                 if (typeof this.onExitCallback === "function") {
                     this.onExitCallback.call(this.onExitContext);
@@ -325,7 +325,7 @@ var summ;
             }, this, 0, 1, 2, 3, this.leaderboardGroup);
             exitButton.anchor.set(1, 0);
             exitButton.width = this.controlsWidth;
-            exitButton.height = title.height;
+            exitButton.height = title.height - 20;
 
             //New Scroll bar layout
             var stepUpButton = game.add.button(bounds.x + bounds.width, bounds.y + this.tabHeight + titleHeight, stepUpImage, function () {
@@ -406,12 +406,12 @@ var summ;
                 this.playerBackgrounds[i].events.onInputOut.add(function () {
                 }, this);
 
-                this.playerNames[i] = game.add.text(bounds.x + 10, yStart + yIncrement * i, "Retrieving...", nameStyle, this.leaderboardGroup);
-                this.playerNames[i].anchor.set(0, 0);
+                this.playerNames[i] = game.add.text(bounds.x + 10, yStart + yIncrement * i + yIncrement / 2, "Retrieving...", nameStyle, this.leaderboardGroup);
+                this.playerNames[i].anchor.set(0, 0.5);
                 this.playerNames[i].inputEnabled = true;
 
-                this.playerScores[i] = game.add.text(bounds.x + bounds.width - this.controlsWidth - 25, yStart + yIncrement * i, "----", scoreStyle, this.leaderboardGroup);
-                this.playerScores[i].anchor.set(1, 0);
+                this.playerScores[i] = game.add.text(bounds.x + bounds.width - this.controlsWidth - 25, yStart + yIncrement * i + yIncrement / 2, "----", scoreStyle, this.leaderboardGroup);
+                this.playerScores[i].anchor.set(1, 0.5);
             }
 
             LeaderboardMessages.requestScores(function (message) {
