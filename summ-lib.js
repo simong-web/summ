@@ -325,9 +325,10 @@ var summ;
                 }
             }, this, 0, 1, 2, 3, this.leaderboardGroup);
             exitButton.anchor.set(1, 0);
-            exitButton.width = this.controlsWidth;
-            exitButton.height = title.height - 20;
+            exitButton.scale.set(title.height / exitButton.height);
 
+            //exitButton.width = this.controlsWidth;
+            //exitButton.height = title.height-20;
             //New Scroll bar layout
             var stepUpButton = game.add.button(bounds.x + bounds.width, bounds.y + this.tabHeight + titleHeight, stepUpImage, function () {
                 this.currentPos = Math.max(this.currentPos - 1, 0);
