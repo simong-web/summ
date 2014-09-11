@@ -311,9 +311,9 @@ module summ {
 
             bounds = bounds || new Phaser.Rectangle(100, 100, 460, 400);
 
-            var background = game.add.sprite(bounds.x, bounds.y, backgroundKey, null, this.leaderboardGroup);
+            var background = game.add.sprite(bounds.x, bounds.y - 100, backgroundKey, null, this.leaderboardGroup);
             background.width = bounds.width;
-            background.health = bounds.height;
+            background.height = bounds.height+100;
 
 
 
