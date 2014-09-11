@@ -282,6 +282,7 @@ module summ {
         constructor(game: Phaser.Game, tabImage: string, exitImage: string, jumpUpImage: string, stepUpImage: string, onExitCallback?: Function, onExitContext?: Object, tabHeight?: number, controlsWidth?: number, slots?: number, bounds?: Phaser.Rectangle, tabFont = { font: "bold 14px Arial", fill: "#ffffff", align: "middle" }, nameStyle: any = { font: "bold 16px Arial", fill: "#ffffff", align: "left" }, scoreStyle: any = { font: "bold 16px Arial", fill: "#ffffff", align: "right" }, leaderboardNames?: Array<string>) {
 
             var backgroundKey = 'lb_background';
+            var titleKey = 'lb_title';
             this.entryBackgroundKey = 'lb_entry';
             exitImage = null;
             exitImage = exitImage || 'lb_close';
@@ -318,7 +319,7 @@ module summ {
             background.width = bounds.width;
             background.height = bounds.height;
 
-            var title = game.add.sprite(bounds.x, bounds.y, backgroundKey, null, this.leaderboardGroup);
+            var title = game.add.sprite(bounds.x, bounds.y, titleKey, null, this.leaderboardGroup);
             title.width = bounds.width;
 
             var titleHeight = title.height;

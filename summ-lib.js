@@ -263,6 +263,7 @@ var summ;
             this.playerScores = new Array(this.slots);
             this.playerBackgrounds = new Array(this.slots);
             var backgroundKey = 'lb_background';
+            var titleKey = 'lb_title';
             this.entryBackgroundKey = 'lb_entry';
             exitImage = null;
             exitImage = exitImage || 'lb_close';
@@ -297,7 +298,7 @@ var summ;
             background.width = bounds.width;
             background.height = bounds.height;
 
-            var title = game.add.sprite(bounds.x, bounds.y, backgroundKey, null, this.leaderboardGroup);
+            var title = game.add.sprite(bounds.x, bounds.y, titleKey, null, this.leaderboardGroup);
             title.width = bounds.width;
 
             var titleHeight = title.height;
