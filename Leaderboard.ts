@@ -320,7 +320,8 @@ module summ {
             background.height = bounds.height;
 
             var title = game.add.sprite(bounds.x, bounds.y, titleKey, null, this.leaderboardGroup);
-            title.width = bounds.width;
+
+            title.scale.set(bounds.width / title.width);
 
             var titleHeight = title.height;
 
@@ -422,7 +423,7 @@ module summ {
             
 
             var yIncrement = (bounds.height - this.tabHeight - titleHeight) / this.slots;
-            var yStart = bounds.y + titleHeight + (bounds.height - titleHeight)/2 - yIncrement/2 - this.slots / 2 * yIncrement + this.tabHeight;
+            var yStart = bounds.y + titleHeight + this.tabHeight;
 
             for (var i = 0; i < this.slots; i++) {
 
