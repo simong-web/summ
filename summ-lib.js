@@ -254,9 +254,9 @@ var summ;
             if (typeof scoreStyle === "undefined") { scoreStyle = { font: "bold 16px Arial", fill: "#ffffff", align: "right" }; }
             //Settings
             this.leaderboardNames = ['All Time', 'Monthly', 'Weekly'];
-            this.tabHeight = 30;
+            this.tabHeight = 40;
             this.controlsWidth = 60;
-            this.slots = 8;
+            this.slots = 10;
             this.currentLeaderboard = 0;
             this.currentPos = 0;
             this.playerNames = new Array(this.slots);

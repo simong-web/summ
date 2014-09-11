@@ -263,9 +263,9 @@ module summ {
         
         //Settings
         leaderboardNames = ['All Time', 'Monthly', 'Weekly'];
-        tabHeight = 30;
+        tabHeight = 40;
         controlsWidth = 60;
-        slots = 8;
+        slots = 10;
 
         currentLeaderboard = 0;
         currentPos = 0;
