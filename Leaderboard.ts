@@ -422,7 +422,7 @@ module summ {
             
 
             var yIncrement = (bounds.height - this.tabHeight - titleHeight) / this.slots;
-            var yStart = bounds.y + titleHeight + (bounds.height - titleHeight)/2 - this.slots / 2 * yIncrement + this.tabHeight;
+            var yStart = bounds.y + titleHeight + (bounds.height - titleHeight)/2 - yIncrement/2 - this.slots / 2 * yIncrement + this.tabHeight;
 
             for (var i = 0; i < this.slots; i++) {
 
