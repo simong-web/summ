@@ -290,11 +290,13 @@ var summ;
 
             bounds = bounds || new Phaser.Rectangle(100, 100, 460, 400);
 
-            var background = game.add.sprite(bounds.x, bounds.y - 80, backgroundKey, null, this.leaderboardGroup);
+            var background = game.add.sprite(bounds.x, bounds.y, backgroundKey, null, this.leaderboardGroup);
             background.width = bounds.width;
-            background.height = bounds.height + 80;
+            background.height = bounds.height;
 
-            var xTabIncrement = (bounds.width - this.controlsWidth) / this.leaderboardNames.length;
+            var titleHeight = 80;
+
+            var xTabIncrement = (bounds.width) / this.leaderboardNames.length;
             for (var i = 0; i < this.leaderboardNames.length; i++) {
                 var buttonContext = { leaderboardDisplay: this, leaderboardNumber: i };
 
@@ -380,8 +382,8 @@ var summ;
             jumpDownButton.width = this.controlsWidth;
             jumpDownButton.height = -this.tabHeight;
             */
-            var yIncrement = (bounds.height - this.tabHeight) / this.slots;
-            var yStart = bounds.x + bounds.halfHeight - this.slots / 2 * yIncrement + this.tabHeight;
+            var yIncrement = (bounds.height - this.tabHeight - titleHeight) / this.slots;
+            var yStart = bounds.y + bounds.halfHeight - titleHeight / 2 - this.slots / 2 * yIncrement + this.tabHeight;
 
             for (var i = 0; i < this.slots; i++) {
                 this.playerBackgrounds[i] = game.add.sprite(bounds.x, yStart + yIncrement * i, this.entryBackgroundKey, null, this.leaderboardGroup);
