@@ -390,11 +390,11 @@ var summ;
             jumpDownButton.height = -this.tabHeight;
             */
             var yIncrement = (bounds.height - this.tabHeight - titleHeight) / this.slots;
-            var yStart = bounds.y + bounds.halfHeight + titleHeight / 2 - this.slots / 2 * yIncrement + this.tabHeight;
+            var yStart = bounds.y + (bounds.height - titleHeight) / 2 - this.slots / 2 * yIncrement + this.tabHeight;
 
             for (var i = 0; i < this.slots; i++) {
-                this.playerBackgrounds[i] = game.add.sprite(bounds.x, yStart + yIncrement * i, this.entryBackgroundKey, null, this.leaderboardGroup);
-                this.playerBackgrounds[i].width = bounds.width - this.controlsWidth - 5;
+                this.playerBackgrounds[i] = game.add.sprite(bounds.x + 25, yStart + yIncrement * i, this.entryBackgroundKey, null, this.leaderboardGroup);
+                this.playerBackgrounds[i].width = bounds.width - this.controlsWidth - 30;
                 this.playerBackgrounds[i].height = yIncrement;
                 this.playerBackgrounds[i].anchor.set(0, 0);
                 this.playerBackgrounds[i].inputEnabled = true;
