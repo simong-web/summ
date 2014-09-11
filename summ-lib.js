@@ -318,7 +318,7 @@ var summ;
                 text.anchor.set(0.5, 0.5);
             }
 
-            var exitButton = game.add.button(bounds.x + bounds.width, bounds.y + 20, exitImage, function () {
+            var exitButton = game.add.button(bounds.x + bounds.width, bounds.y, exitImage, function () {
                 this.hide();
                 if (typeof this.onExitCallback === "function") {
                     this.onExitCallback.call(this.onExitContext);
