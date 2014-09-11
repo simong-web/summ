@@ -265,7 +265,7 @@ var summ;
             var backgroundKey = 'lb_background';
             this.entryBackgroundKey = 'lb_entry';
             exitImage = null;
-            exitImage = exitImage || 'lb_exit';
+            exitImage = exitImage || 'lb_close';
             stepUpImage = null;
             stepUpImage = stepUpImage || 'lb_up';
             tabImage = null;
@@ -297,7 +297,7 @@ var summ;
             background.width = bounds.width;
             background.height = bounds.height;
 
-            var titleHeight = 80;
+            var titleHeight = 40;
 
             var xTabIncrement = (bounds.width) / this.leaderboardNames.length;
             for (var i = 0; i < this.leaderboardNames.length; i++) {
@@ -342,7 +342,7 @@ var summ;
             stepDownButton.width = this.controlsWidth;
             stepDownButton.height = -this.controlsWidth;
 
-            var scrollBar = new ScrollBar(game, new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2, bounds.y + this.tabHeight + this.controlsWidth, 0, bounds.height - this.tabHeight - this.controlsWidth * 2), function (value) {
+            var scrollBar = new ScrollBar(game, new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2, bounds.y + this.tabHeight + this.controlsWidth + titleHeight, 0, bounds.height - this.tabHeight - titleHeight - this.controlsWidth * 2), function (value) {
                 if (this.leaderboards) {
                     this.currentPos = Math.floor(value / 100 * (this.leaderboards[this.currentLeaderboard].length - 1));
                     this.populateLeaderboards();
