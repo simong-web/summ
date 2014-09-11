@@ -473,7 +473,7 @@ var summ;
                 for (var i = 0; i < this.playerNames.length; i++) {
                     this.playerNames[i].events.onInputUp.removeAll(this.leaderboards);
                     if (this.currentPos + i < this.leaderboards[leaderboardNumber].length) {
-                        this.playerNames[i].setText((this.currentPos + i + 1) + ': ' + this.leaderboards[leaderboardNumber][this.currentPos + i].display_name);
+                        this.playerNames[i].setText((this.currentPos + i + 1) + ' ' + this.leaderboards[leaderboardNumber][this.currentPos + i].display_name);
                         this.playerBackgrounds[i].visible = true;
                         this.playerBackgrounds[i].events.onInputUp.removeAll();
                         this.playerBackgrounds[i].events.onInputUp.add(this.nameOnUpFunction, this);

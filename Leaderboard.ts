@@ -512,7 +512,7 @@ module summ {
 
 
 
-                        this.playerNames[i].setText((this.currentPos + i + 1) + ': ' + this.leaderboards[leaderboardNumber][this.currentPos + i].display_name);
+                        this.playerNames[i].setText((this.currentPos + i + 1) + ' ' + this.leaderboards[leaderboardNumber][this.currentPos + i].display_name);
                         this.playerBackgrounds[i].visible = true;
                         this.playerBackgrounds[i].events.onInputUp.removeAll();
                         this.playerBackgrounds[i].events.onInputUp.add(this.nameOnUpFunction, this);
