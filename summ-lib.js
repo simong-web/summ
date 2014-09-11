@@ -297,7 +297,10 @@ var summ;
             background.width = bounds.width;
             background.height = bounds.height;
 
-            var titleHeight = 40;
+            var title = game.add.sprite(bounds.x, bounds.y, backgroundKey, null, this.leaderboardGroup);
+            title.width = bounds.width;
+
+            var titleHeight = title.height;
 
             var xTabIncrement = (bounds.width) / this.leaderboardNames.length;
             for (var i = 0; i < this.leaderboardNames.length; i++) {
@@ -310,7 +313,7 @@ var summ;
                 button.width = xTabIncrement;
                 button.height = this.tabHeight;
                 var text = game.add.text(button.x + button.width / 2, button.y + button.height / 2, this.leaderboardNames[i], tabFont, this.leaderboardGroup);
-                text.anchor.set(0.5, 0.5);
+                text.anchor.set(0.5, 0);
             }
 
             var exitButton = game.add.button(bounds.x + bounds.width, bounds.y, exitImage, function () {
@@ -321,7 +324,7 @@ var summ;
             }, this, 0, 1, 2, 3, this.leaderboardGroup);
             exitButton.anchor.set(1, 0);
             exitButton.width = this.controlsWidth;
-            exitButton.height = this.tabHeight;
+            exitButton.height = title.height;
 
             //New Scroll bar layout
             var stepUpButton = game.add.button(bounds.x + bounds.width, bounds.y + this.tabHeight + titleHeight, stepUpImage, function () {
@@ -429,7 +432,8 @@ var summ;
                 'lb_scroll_bar',
                 'lb_scroll_head',
                 'lb_tab',
-                'lb_up'
+                'lb_up',
+                'lb_title'
             ];
 
             if (local) {
