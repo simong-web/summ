@@ -311,9 +311,9 @@ module summ {
 
             bounds = bounds || new Phaser.Rectangle(100, 100, 460, 400);
 
-            var background = game.add.sprite(bounds.x, bounds.y - 100, backgroundKey, null, this.leaderboardGroup);
+            var background = game.add.sprite(bounds.x, bounds.y - 80, backgroundKey, null, this.leaderboardGroup);
             background.width = bounds.width;
-            background.height = bounds.height+100;
+            background.height = bounds.height+80;
 
 
 
@@ -421,7 +421,7 @@ module summ {
                 this.playerBackgrounds[i] = game.add.sprite(bounds.x, yStart + yIncrement * i, this.entryBackgroundKey, null, this.leaderboardGroup);
                 this.playerBackgrounds[i].width = bounds.width - this.controlsWidth -5;
                 this.playerBackgrounds[i].height = yIncrement;
-                this.playerBackgrounds[i].anchor.set(0, 0.5);
+                this.playerBackgrounds[i].anchor.set(0, 0);
                 this.playerBackgrounds[i].inputEnabled = true;
                 this.playerBackgrounds[i].events.onInputUp.add(this.nameOnUpFunction, this);
                 this.playerBackgrounds[i].events.onInputOver.add(function () { }, this);
@@ -429,11 +429,11 @@ module summ {
                 this.playerBackgrounds[i].events.onInputOut.add(function () { }, this);
 
                 this.playerNames[i] = game.add.text(bounds.x, yStart + yIncrement * i, "Retrieving...", nameStyle, this.leaderboardGroup);
-                this.playerNames[i].anchor.set(0, 0.5);
+                this.playerNames[i].anchor.set(0, 0);
                 this.playerNames[i].inputEnabled = true;
 
                 this.playerScores[i] = game.add.text(bounds.x + bounds.width-this.controlsWidth-5, yStart + yIncrement * i, "----", scoreStyle, this.leaderboardGroup);
-                this.playerScores[i].anchor.set(1, 0.5);
+                this.playerScores[i].anchor.set(1, 0);
             }
 
             LeaderboardMessages.requestScores(function (message: summ.LeaderboardMessageStructure) {
