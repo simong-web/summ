@@ -263,9 +263,9 @@ module summ {
         
         //Settings
         leaderboardNames = ['All Time', 'Monthly', 'Weekly'];
-        tabHeight = 60;
+        tabHeight = 30;
         controlsWidth = 60;
-        slots = 10;
+        slots = 8;
 
         currentLeaderboard = 0;
         currentPos = 0;
@@ -436,11 +436,11 @@ module summ {
                 this.playerBackgrounds[i].events.onInputDown.add(function () { }, this);
                 this.playerBackgrounds[i].events.onInputOut.add(function () { }, this);
 
-                this.playerNames[i] = game.add.text(bounds.x, yStart + yIncrement * i, "Retrieving...", nameStyle, this.leaderboardGroup);
+                this.playerNames[i] = game.add.text(bounds.x+10, yStart + yIncrement * i, "Retrieving...", nameStyle, this.leaderboardGroup);
                 this.playerNames[i].anchor.set(0, 0);
                 this.playerNames[i].inputEnabled = true;
 
-                this.playerScores[i] = game.add.text(bounds.x + bounds.width-this.controlsWidth-5, yStart + yIncrement * i, "----", scoreStyle, this.leaderboardGroup);
+                this.playerScores[i] = game.add.text(bounds.x + bounds.width-this.controlsWidth-25, yStart + yIncrement * i, "----", scoreStyle, this.leaderboardGroup);
                 this.playerScores[i].anchor.set(1, 0);
             }
 

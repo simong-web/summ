@@ -254,9 +254,9 @@ var summ;
             if (typeof scoreStyle === "undefined") { scoreStyle = { font: "bold 16px Arial", fill: "#ffffff", align: "right" }; }
             //Settings
             this.leaderboardNames = ['All Time', 'Monthly', 'Weekly'];
-            this.tabHeight = 60;
+            this.tabHeight = 30;
             this.controlsWidth = 60;
-            this.slots = 10;
+            this.slots = 8;
             this.currentLeaderboard = 0;
             this.currentPos = 0;
             this.playerNames = new Array(this.slots);
@@ -406,11 +406,11 @@ var summ;
                 this.playerBackgrounds[i].events.onInputOut.add(function () {
                 }, this);
 
-                this.playerNames[i] = game.add.text(bounds.x, yStart + yIncrement * i, "Retrieving...", nameStyle, this.leaderboardGroup);
+                this.playerNames[i] = game.add.text(bounds.x + 10, yStart + yIncrement * i, "Retrieving...", nameStyle, this.leaderboardGroup);
                 this.playerNames[i].anchor.set(0, 0);
                 this.playerNames[i].inputEnabled = true;
 
-                this.playerScores[i] = game.add.text(bounds.x + bounds.width - this.controlsWidth - 5, yStart + yIncrement * i, "----", scoreStyle, this.leaderboardGroup);
+                this.playerScores[i] = game.add.text(bounds.x + bounds.width - this.controlsWidth - 25, yStart + yIncrement * i, "----", scoreStyle, this.leaderboardGroup);
                 this.playerScores[i].anchor.set(1, 0);
             }
 
