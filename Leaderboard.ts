@@ -283,8 +283,11 @@ module summ {
 
             var backgroundKey = 'lb_background';
             this.entryBackgroundKey = 'lb_entry';
+            exitImage = null;
             exitImage = exitImage || 'lb_exit';
+            stepUpImage = null;
             stepUpImage = stepUpImage || 'lb_up';
+            tabImage = null;
             tabImage = tabImage || 'lb_tab';
 
 
@@ -323,7 +326,7 @@ module summ {
 
                 var buttonContext = { leaderboardDisplay: this, leaderboardNumber: i }
 
-                var button = game.add.button(bounds.x + xTabIncrement * i, bounds.y, tabImage, function () {
+                var button = game.add.button(bounds.x + xTabIncrement * i, bounds.y + titleHeight, tabImage, function () {
                     this.leaderboardDisplay.currentLeaderboard = this.leaderboardNumber;
                     this.leaderboardDisplay.populateLeaderboards.call(this.leaderboardDisplay, this.leaderboardDisplay.currentLeaderboard);
                 }, buttonContext, 2, 1, 0, 1, this.leaderboardGroup);
@@ -345,7 +348,7 @@ module summ {
             exitButton.height = this.tabHeight;
 
             //New Scroll bar layout
-            var stepUpButton = game.add.button(bounds.x + bounds.width, bounds.y + this.tabHeight, stepUpImage, function () {
+            var stepUpButton = game.add.button(bounds.x + bounds.width, bounds.y + this.tabHeight + titleHeight, stepUpImage, function () {
                 this.currentPos = Math.max(this.currentPos - 1, 0);
                 scrollBar.moveHeadToValue(this.currentPos / (this.leaderboards[this.currentLeaderboard].length - 1) * 100);
                 this.populateLeaderboards();
@@ -415,7 +418,7 @@ module summ {
             
 
             var yIncrement = (bounds.height - this.tabHeight - titleHeight) / this.slots;
-            var yStart = bounds.y + bounds.halfHeight - titleHeight/2 - this.slots / 2 * yIncrement + this.tabHeight;
+            var yStart = bounds.y + bounds.halfHeight + titleHeight/2 - this.slots / 2 * yIncrement + this.tabHeight;
 
             for (var i = 0; i < this.slots; i++) {
 
