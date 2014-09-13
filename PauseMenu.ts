@@ -409,12 +409,6 @@ module summ {
                     this.buttonsText[i].events.onInputUp.dispatch(this.buttonsText[i], pointer, true);
                 }
             }
-
-            this.buttons.forEach(function (button: Phaser.Button) {
-                if (button.getBounds().contains(pointer.x, pointer.y)) {
-                    button.onInputUpHandler(button,pointer,true)
-                }
-            }, this);
         }
 
 
