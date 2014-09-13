@@ -91,7 +91,7 @@ module summ {
             this.spreadAlongY = spreadAlongY;
         }
 
-        addButton(text: string, callback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, key?: string, overFrame?: number, outFrame?: number, downFrame?: number, upFrame?: number, scaleX?: number, scaleY?: number,textStyle?: any) {
+        addButton(text: string, callback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, key?: string, overFrame?: number, outFrame?: number, downFrame?: number, upFrame?: number, scaleX?: number, scaleY?: number,textStyle?: any):any{
 
             scaleX = scaleX || this.defaultScaleX || 1;
             scaleY = scaleY || this.defaultScaleY || 1;
@@ -122,7 +122,7 @@ module summ {
             this.buttons.push(button);
             
             this.updateButtonPositions();
-            return;
+            return button;
         }
 
         addTextAsButton(text: string, callback?: Function, onOverSize?: number, onDownSize?: number, onOutSize?: number, callbackContext?: Object, setButtonTextInContext?:boolean ,scaleX?: number, scaleY?: number, textStyle?: any) {
@@ -203,7 +203,7 @@ module summ {
 
             this.buttonsText.push(buttonText);
             this.updateButtonPositions();
-            return;
+            return button || buttonText;
         }
 
         showMenu() {

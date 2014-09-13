@@ -581,7 +581,7 @@ var summ;
             this.buttons.push(button);
 
             this.updateButtonPositions();
-            return;
+            return button;
         };
 
         PauseMenu.prototype.addTextAsButton = function (text, callback, onOverSize, onDownSize, onOutSize, callbackContext, setButtonTextInContext, scaleX, scaleY, textStyle) {
@@ -669,7 +669,7 @@ var summ;
 
             this.buttonsText.push(buttonText);
             this.updateButtonPositions();
-            return;
+            return button || buttonText;
         };
 
         PauseMenu.prototype.showMenu = function () {
