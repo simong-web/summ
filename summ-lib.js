@@ -32,7 +32,9 @@ var summ;
 
                         var secondArg;
                         if (reply.action == 'set_score')
-                            if (reply.status[0] == 'higher') {
+                            if (reply.status == 'no_user') {
+                                secondArg = "You must be logged in to save your high scores.";
+                            } else if (reply.status[0] == 'higher') {
                                 secondArg = "Congratulations! You beat your all time high score!";
                             } else if (reply.status[1] == 'higher') {
                                 secondArg = "Great Work! You beat your monthly high score!";
