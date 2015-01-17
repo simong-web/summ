@@ -22,7 +22,7 @@ var summ;
     var messageList = new Array();
 
     function recieveMessage(event) {
-        if (event.origin == "http://www.gitsumm.com" || event.origin == "http://gitsumm.com") {
+        if (event.origin == "https://www.gitsumm.com"||event.origin == "https://gitsumm.com"||event.origin == "http://www.gitsumm.com"||event.origin == "http://gitsumm.com") {
             var reply = JSON.parse(event.data);
             if (reply && reply.action) {
                 for (var i = 0; i < messageList.length; i++) {
@@ -447,7 +447,7 @@ var summ;
                 }
             } else {
                 for (var alpha in images) {
-                    game.load.image(images[alpha], 'http://gitsumm.com/files/_/simon/Leaderboard Assets/' + images[alpha] + '.png');
+                    game.load.image(images[alpha], 'https://gitsumm.com/files/_/simon/Leaderboard Assets/' + images[alpha] + '.png');
                 }
             }
         };
