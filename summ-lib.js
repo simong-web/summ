@@ -328,6 +328,7 @@ var summ;
             }, this, 0, 1, 2, 3, this.leaderboardGroup);
             exitButton.anchor.set(1, 0);
             exitButton.scale.set(title.height / exitButton.height);
+            
 
             //exitButton.width = this.controlsWidth;
             //exitButton.height = title.height-20;
@@ -428,26 +429,26 @@ var summ;
         }
         LeaderboardDisplay.loadDefaults = function (game, local) {
             if (typeof local === "undefined") { local = false; }
-            var images = [
-                'lb_background',
-                'lb_close',
-                'lb_down',
-                'lb_entry',
-                'lb_left_arrow',
-                'lb_scroll_bar',
-                'lb_scroll_head',
-                'lb_tab',
-                'lb_up',
-                'lb_title'
+            var spritesheets = [
+                ['lb_background',800,600],
+                ['lb_close',99,99],
+                ['lb_down',115,112],
+                ['lb_entry',651,45],
+                ['lb_left_arrow',172,91],
+                ['lb_scroll_bar',24,305],
+                ['lb_scroll_head',14,49],
+                ['lb_tab',355,80],
+                ['lb_title',800,88],
+                ['lb_up',120,120],
             ];
 
             if (local) {
-                for (var alpha in images) {
-                    game.load.image(images[alpha], 'assets/' + images[alpha] + '.png');
+                for (var alpha in spritesheets) {
+                    game.load.spritesheet(spritesheets[alpha][0], 'assets/' + spritesheets[alpha][0] + '.png',spritesheets[alpha][1],spritesheets[alpha][2]);
                 }
             } else {
-                for (var alpha in images) {
-                    game.load.image(images[alpha], 'https://gitsumm.com/files/_/simon/Leaderboard Assets/' + images[alpha] + '.png');
+                for (var alpha in spritesheets) {
+                    game.load.spritesheet(spritesheets[alpha][0], 'https://gitsumm.com/files/_/simon/Leaderboard Assets/' + spritesheets[alpha][0] + '.png',spritesheets[alpha][1],spritesheets[alpha][2]);
                 }
             }
         };
