@@ -316,6 +316,7 @@ var summ;
                 }, buttonContext, 2, 1, 0, 1, this.leaderboardGroup);
                 button.width = xTabIncrement;
                 button.height = this.tabHeight;
+                button.freezeFrames = true;
                 var text = game.add.text(button.x + button.width / 2, button.y + button.height / 2, this.leaderboardNames[i], tabFont, this.leaderboardGroup);
                 text.anchor.set(0.5, 0.5);
             }
@@ -327,6 +328,7 @@ var summ;
                 }
             }, this, 0, 1, 2, 3, this.leaderboardGroup);
             exitButton.anchor.set(1, 0);
+            exitButton.freezeFrames = true;
             exitButton.scale.set(title.height / exitButton.height);
 
             //exitButton.width = this.controlsWidth;
@@ -340,6 +342,7 @@ var summ;
             stepUpButton.anchor.set(1, 0);
             stepUpButton.width = this.controlsWidth;
             stepUpButton.height = this.controlsWidth;
+            stepUpButton.freezeFrames = true;
 
             var stepDownButton = game.add.button(bounds.x + bounds.width, bounds.y + bounds.height - this.controlsWidth, stepUpImage, function () {
                 this.currentPos = Math.min(this.currentPos + 1, this.leaderboards[this.currentLeaderboard].length - 1);
@@ -349,6 +352,7 @@ var summ;
             stepDownButton.anchor.set(1, 1);
             stepDownButton.width = this.controlsWidth;
             stepDownButton.height = -this.controlsWidth;
+            stepDownButton.freezeFrames = true;
 
             var scrollBar = new ScrollBar(game, new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2, bounds.y + this.tabHeight + this.controlsWidth + titleHeight, 0, bounds.height - this.tabHeight - titleHeight - this.controlsWidth * 2), function (value) {
                 if (this.leaderboards) {
