@@ -19,16 +19,16 @@ var summ;
     }
     summ.urlParam = urlParam;
 
-    var messageList = new Array();
+    summ.messageList = new Array();
 
     function recieveMessage(event) {
         if (event.origin == "https://www.gitsumm.com" || event.origin == "https://gitsumm.com" || event.origin == "http://www.gitsumm.com" || event.origin == "http://gitsumm.com") {
             var reply = JSON.parse(event.data);
             if (reply && reply.action) {
-                for (var i = 0; i < messageList.length; i++) {
-                    if (messageList[i].action == reply.action) {
-                        var message = messageList[i];
-                        messageList.splice(i, 1);
+                for (var i = 0; i < summ.messageList.length; i++) {
+                    if (summ.messageList[i].action == reply.action) {
+                        var message = summ.messageList[i];
+                        summ.messageList.splice(i, 1);
 
                         var secondArg;
                         if (reply.action == 'set_score')
@@ -91,7 +91,7 @@ var summ;
                 parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), '*');
             } catch (e) {
             }
-            messageList.push({ action: 'set_score', callback: callback, context: callbackContext });
+            summ.messageList.push({ action: 'set_score', callback: callback, context: callbackContext });
             /*
             var ajaxURL = <string>summ.urlParam('ajax_url');
             var postID = summ.urlParam('post_id');
@@ -120,7 +120,7 @@ var summ;
                 parent.postMessage(JSON.stringify({ action: 'get_player' }), '*');
             } catch (e) {
             }
-            messageList.push({ action: 'get_player', callback: callback, context: callbackContext });
+            summ.messageList.push({ action: 'get_player', callback: callback, context: callbackContext });
         };
 
         LeaderboardMessages.requestScores = function (callback, callbackContext, timeout) {
@@ -130,7 +130,7 @@ var summ;
                 parent.postMessage(JSON.stringify({ action: 'get_leaderboard' }), '*');
             } catch (e) {
             }
-            messageList.push({ action: 'get_leaderboard', callback: callback, context: callbackContext });
+            summ.messageList.push({ action: 'get_leaderboard', callback: callback, context: callbackContext });
             /*
             var ajaxURL = <string>summ.urlParam('ajax_url');
             var postID = summ.urlParam('post_id');
@@ -946,6 +946,38 @@ var summ;
         return Ad;
     })(Phaser.Sprite);
     summ.Ad = Ad;
+})(summ || (summ = {}));
+/// <reference path="Leaderboard.ts" />
+/// <reference path="jquery.d.ts" />
+//#######################PauseMenu.ts###############################
+/// <reference path="phaser.d.ts" />
+var summ;
+(function (summ) {
+    var UserDataMessages = (function () {
+        function UserDataMessages() {
+        }
+        UserDataMessages.setUserData = function (data, callback, callbackContext) {
+            try  {
+                //parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'set_user_data', data: data }), '*');
+            } catch (e) {
+            }
+
+            summ.messageList.push({ action: 'set_user_data', callback: callback, context: callbackContext });
+        };
+
+        UserDataMessages.getUserData = function (callback, callbackContext, timeout) {
+            if (typeof timeout === "undefined") { timeout = 0; }
+            try  {
+                //parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
+                parent.postMessage(JSON.stringify({ action: 'get_user_data' }), '*');
+            } catch (e) {
+            }
+            summ.messageList.push({ action: 'get_user_data', callback: callback, context: callbackContext });
+        };
+        return UserDataMessages;
+    })();
+    summ.UserDataMessages = UserDataMessages;
 })(summ || (summ = {}));
 //#######################Preloader.ts###############################
 /// <reference path="phaser.d.ts" />

@@ -14,7 +14,7 @@ module summ {
         }
     }
 
-    var messageList = new Array(); 
+    export var messageList = new Array(); 
 
     function recieveMessage(event) {
         if (event.origin == "https://www.gitsumm.com" || event.origin == "https://gitsumm.com" || event.origin == "http://www.gitsumm.com" || event.origin == "http://gitsumm.com") {

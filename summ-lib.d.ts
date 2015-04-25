@@ -2,6 +2,7 @@
 /// <reference path="phaser.d.ts" />
 declare module summ {
     function urlParam(name: any): {};
+    var messageList: any[];
     class LeaderboardMessageStructure {
         public action: string;
         public leaderboardName: string;
@@ -119,6 +120,12 @@ declare module summ {
         constructor(game: Phaser.Game, x: number, y: number, width?: number, height?: number, key?: any, frame?: any, startDelay?: number, upTime?: number, onEnd?: Function, onEndContext?: Object, clickToClear?: boolean, centerAnchor?: boolean, stretchToFit?: boolean, link?: string);
         public show(): void;
         public remove(): void;
+    }
+}
+declare module summ {
+    class UserDataMessages {
+        static setUserData(data: Object, callback: Function, callbackContext: Object): void;
+        static getUserData(callback: Function, callbackContext: Object, timeout?: number): void;
     }
 }
 declare module summ {
