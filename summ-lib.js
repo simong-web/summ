@@ -957,13 +957,16 @@ var summ;
         function UserDataMessages() {
         }
         UserDataMessages.setUserData = function (data, callback, callbackContext) {
+            if (typeof callback === "undefined") { callback = null; }
+            if (typeof callbackContext === "undefined") { callbackContext = null; }
             try  {
                 //parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
                 parent.postMessage(JSON.stringify({ action: 'set_user_data', data: data }), '*');
             } catch (e) {
             }
 
-            summ.messageList.push({ action: 'set_user_data', callback: callback, context: callbackContext });
+            if (callback != null && callbackContext != null)
+                summ.messageList.push({ action: 'set_user_data', callback: callback, context: callbackContext });
         };
 
         UserDataMessages.getUserData = function (callback, callbackContext, timeout) {

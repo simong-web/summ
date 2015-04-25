@@ -7,7 +7,7 @@ module summ {
 
     export class UserDataMessages {
 
-        public static setUserData(data: Object, callback: Function, callbackContext: Object) {
+        public static setUserData(data: Object, callback: Function = null, callbackContext: Object = null) {
             try {
                 //parent.postMessage(JSON.stringify({ action: 'set_score', score: score }), 'http://www.gitsumm.com');
                 parent.postMessage(JSON.stringify({ action: 'set_user_data', data: data }), '*');
@@ -15,7 +15,8 @@ module summ {
 
             }
            
-            messageList.push({ action: 'set_user_data', callback: callback, context: callbackContext });
+            if(callback != null && callbackContext != null)
+                messageList.push({ action: 'set_user_data', callback: callback, context: callbackContext });
 
         }
 
