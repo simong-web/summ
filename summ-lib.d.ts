@@ -125,7 +125,7 @@ declare module summ {
 declare module summ {
     class UserDataMessages {
         static setUserData(data: Object, callback?: Function, callbackContext?: Object): void;
-        static getUserData(callback: Function, callbackContext: Object, timeout?: number): void;
+        static getUserData(callback: Function, callbackContext: Object): void;
     }
 }
 declare module summ {

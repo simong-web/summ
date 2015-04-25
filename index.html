@@ -5,17 +5,36 @@
 </head>
 <body>
     <h1>Summ-lib Documentation</h1>
-    <h2>Phaser:</h2>
     <p>
-        How to use:</p>
+        How to use summ-lib in your project:</p>
     <ol>
         <li>Include &quot;&lt;script src=&quot;<a href="http://simon-gitsumm.github.io/summ/summ-lib.js">http://simon-gitsumm.github.io/summ/summ-lib.js</a>&quot;&gt;&lt;/script&gt;&nbsp; in you html document after &#39;phaser.js&#39; but before your games .js file</li>
         <li>Download <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none;"><a href="http://simon-gitsumm.github.io/summ/summ-lib.d.ts">http://simon-gitsumm.github.io/summ/summ-lib.d.ts</a> and place in your project folder. Include it as a Typescript refernce to your typescript files using /// &lt;reference path=&quot;summ-lib.d.ts&quot; /&gt;</span></li>
     </ol>
-        <strong>
+    
+    
+    <h2>
+        summ.UserDataMessages
+     </h2>
+   
+        <h3>static setUserData(data: Object, callback?: Function, callbackContext?: Object): void;</h3>
     <p>
-        summ.Preloader</p>
-    </strong>
+        Saves per player, per game data to the server. (Replaces existing data)</p>
+    <ul>
+        <li>data - An object containing the data you wish to save. It is best to save all data as strings as they will be parsed and returned as strings when using getUserData.</li>
+        <li>callback (optional) - a function which will be called when a reply from the server is recieved. Its first argument will contain the field <em>succeed </em>of type <strong>boolean</strong> which will tell whether or not the data was saved</li>
+        <li>callbackContext(required if using callback)- the context for the callback function<br /></li>
+    </ul>
+        <h3>static getUserData(callback: Function, callbackContext: Object): void;</h3>
+    <p>
+        Loads current players data for the current game.</p>
+    <ul>
+        <li>callback - a function which will be called when the data is recieved. It&#39;s first argument will contain an object with the field <em>data </em>of type <strong>Object </strong>containing all the fields that were saved using setUserData. Note: All field in <em>data </em>will be of type <strong>String </strong>so make sure to parse them as required.</li>
+        <li>callbackContext - a function used to load your assets. It is called from the context specified, usually the game instance.<br /></li>
+    </ul>
+    <br />
+    <h2>
+        summ.Preloader</h2>
     <h3>
         static load(game: Phaser.Game, loadAssets: Function, context: Object, nextState: string): void;</h3>
     <p>
@@ -35,9 +54,22 @@
         <li>context - the object to be used as the context for loading the assets</li>
         <li>nextState - a string specifying the new state to change to once the loading is finished</li>
     </ul>
-    <p>
-        <strong>
-        summ.PauseMenu</strong></p>
+
+    <br />
+    <h2>
+        summ.FullScreenSettings</h2>
+    <h3>
+        static apply(game: Phaser.Game): void;</h3>
+    <p style="font-style: italic">
+        Applies the gitsumm recommend fullscreen settings to the game for best cross-browser compatabillity.</p>
+
+    <ul>
+        <li>game - the instance of Phaser.Game to apply the settings to.</li>
+    </ul>
+
+    <br />
+    <h2>
+        summ.PauseMenu</strong></h2>
     <p>
         <em>This object is used to create pause menus for games. It can also be used for generic menus.</em></p>
     <h3>constructor(game: Phaser.Game, defaultSprite?: string, defaultOverFrame?: number, defaultOutFrame?: number, defaultDownFrame?: number, defaultUpFrame?: number, defaultScaleX?: number, defaultScaleY?: number, defaultTextStyle?: any, backgroundSprite?: Phaser.Sprite, stretchBackground?: boolean, menuBounds?: Phaser.Rectangle, spreadAlongY?: boolean);</h3>
@@ -146,19 +178,7 @@
         togglePause - toggles the pause menu on or off and pauses/resumes the game accordingly.</p>
     <h3>
         public togglePause(): void;</h3>
-    <p>
-        &nbsp;</p>
-        <strong>
-    <p>
-        summ.FullScreenSettings</p>
-    </strong>
-    <p style="font-style: italic">
-        apply - Applies the gitsumm recommend fullscreen settings to the game for best cross-browser compatabillity.</p>
-    <h3>
-        static apply(game: Phaser.Game): void;</h3>
-    <p>
-        &nbsp;</p>
-    <p>&nbsp;</p>
+        <br />
     <p>&nbsp;</p>
     <p>
         &nbsp;</p>

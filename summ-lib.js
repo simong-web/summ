@@ -969,8 +969,7 @@ var summ;
                 summ.messageList.push({ action: 'set_user_data', callback: callback, context: callbackContext });
         };
 
-        UserDataMessages.getUserData = function (callback, callbackContext, timeout) {
-            if (typeof timeout === "undefined") { timeout = 0; }
+        UserDataMessages.getUserData = function (callback, callbackContext) {
             try  {
                 //parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
                 parent.postMessage(JSON.stringify({ action: 'get_user_data' }), '*');

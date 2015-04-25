@@ -20,7 +20,7 @@ module summ {
 
         }
 
-        static getUserData(callback: Function, callbackContext: Object, timeout: number = 0) {
+        static getUserData(callback: Function, callbackContext: Object) {
             try {
                 //parent.postMessage(JSON.stringify({ action: 'get_player' }), 'http://www.gitsumm.com');
                 parent.postMessage(JSON.stringify({ action: 'get_user_data' }), '*');
