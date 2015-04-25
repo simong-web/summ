@@ -91,7 +91,7 @@ module summ {
             this.spreadAlongY = spreadAlongY;
         }
 
-        addButton(text: string, callback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, key?: string, overFrame?: number, outFrame?: number, downFrame?: number, upFrame?: number, scaleX?: number, scaleY?: number,textStyle?: any):any{
+        addButton(text: string, callback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, key?: string, overFrame?: number, outFrame?: number, downFrame?: number, upFrame?: number, scaleX?: number, scaleY?: number,textStyle?: any):any {
 
             scaleX = scaleX || this.defaultScaleX || 1;
             scaleY = scaleY || this.defaultScaleY || 1;
@@ -196,7 +196,7 @@ module summ {
             return buttonText;
         }
 
-        addExistingButton(buttonText: Phaser.Text, button?: Phaser.Button) {
+        addExistingButton(buttonText: Phaser.Text, button?: Phaser.Button):any {
 
             button = button || null;
             this.buttons.push(button);

@@ -17,7 +17,7 @@ module summ {
     var messageList = new Array(); 
 
     function recieveMessage(event) {
-        if (event.origin == "http://www.gitsumm.com" || event.origin == "http://gitsumm.com") {
+        if (event.origin == "https://www.gitsumm.com" || event.origin == "https://gitsumm.com" || event.origin == "http://www.gitsumm.com" || event.origin == "http://gitsumm.com") {
             var reply = JSON.parse(event.data);
             if (reply && reply.action) {
 
@@ -339,6 +339,7 @@ module summ {
                 }, buttonContext, 2, 1, 0, 1, this.leaderboardGroup);
                 button.width = xTabIncrement;
                 button.height = this.tabHeight;
+                button.freezeFrames = true;
                 var text = game.add.text(button.x + button.width / 2, button.y + button.height / 2, this.leaderboardNames[i],tabFont, this.leaderboardGroup);
                 text.anchor.set(0.5, 0.5);
             }
@@ -352,6 +353,7 @@ module summ {
             }, this, 0, 1, 2, 3, this.leaderboardGroup);
             exitButton.anchor.set(1, 0);
             exitButton.scale.set(title.height / exitButton.height);
+            exitButton.freezeFrames = true;
             //exitButton.width = this.controlsWidth;
             //exitButton.height = title.height-20;
 
@@ -364,6 +366,7 @@ module summ {
             stepUpButton.anchor.set(1, 0);
             stepUpButton.width = this.controlsWidth;
             stepUpButton.height = this.controlsWidth;
+            stepUpButton.freezeFrames = true;
 
             var stepDownButton = game.add.button(bounds.x + bounds.width, bounds.y + bounds.height - this.controlsWidth, stepUpImage, function () {
                 this.currentPos = Math.min(this.currentPos + 1, this.leaderboards[this.currentLeaderboard].length - 1);
@@ -373,6 +376,7 @@ module summ {
             stepDownButton.anchor.set(1, 1);
             stepDownButton.width = this.controlsWidth;
             stepDownButton.height = -this.controlsWidth;
+            stepDownButton.freezeFrames = true;
 
             var scrollBar = new ScrollBar(game,
                 new Phaser.Rectangle(bounds.x + bounds.width - this.controlsWidth / 2,
@@ -462,25 +466,26 @@ module summ {
         }
 
         static loadDefaults(game: Phaser.Game, local:boolean = false) {
-            var images = ['lb_background',
-                'lb_close',
-                'lb_down',
-                'lb_entry',
-                'lb_left_arrow',
-                'lb_scroll_bar',
-                'lb_scroll_head',
-                'lb_tab',
-                'lb_up',
-                'lb_title',
+            var spritesheets = [
+                ['lb_background', 800, 600],
+                ['lb_close', 99, 99],
+                ['lb_down', 115, 112],
+                ['lb_entry', 651, 45],
+                ['lb_left_arrow', 172, 91],
+                ['lb_scroll_bar', 24, 305],
+                ['lb_scroll_head', 14, 49],
+                ['lb_tab', 355, 80],
+                ['lb_title', 800, 88],
+                ['lb_up', 120, 120],
             ];
 
             if (local) {
-                for (var alpha in images) {
-                    game.load.image(images[alpha], 'assets/' + images[alpha] + '.png');
+                for (var alpha in spritesheets) {
+                    game.load.spritesheet(<string>spritesheets[alpha][0], 'assets/' + spritesheets[alpha][0] + '.png', <number>spritesheets[alpha][1], <number>spritesheets[alpha][2]);
                 }
             } else {
-                for (var alpha in images) {
-                    game.load.image(images[alpha], 'http://gitsumm.com/files/_/simon/Leaderboard Assets/' + images[alpha] + '.png');
+                for (var alpha in spritesheets) {
+                    game.load.spritesheet(<string>spritesheets[alpha][0], 'https://gitsumm.com/files/_/simon/Leaderboard Assets/' + spritesheets[alpha][0] + '.png', <number>spritesheets[alpha][1], <number>spritesheets[alpha][2]);
                 }
             }
         }
@@ -518,7 +523,7 @@ module summ {
                         this.playerBackgrounds[i].visible = true;
                         this.playerBackgrounds[i].events.onInputUp.removeAll();
                         this.playerBackgrounds[i].events.onInputUp.add(this.nameOnUpFunction, this);
-                        this.playerBackgrounds[i].events.onInputUp.add(function () { window.open(this, '_blank') }, 'http://gitsumm.com/live/members/' + this.leaderboards[leaderboardNumber][this.currentPos + i].nice_name);
+                        this.playerBackgrounds[i].events.onInputUp.add(function () { window.open(this, '_blank') }, 'https://gitsumm.com/live/members/' + this.leaderboards[leaderboardNumber][this.currentPos + i].nice_name);
                         this.playerScores[i].setText(""+this.leaderboards[leaderboardNumber][this.currentPos + i].score);
                     } else {
                         this.playerNames[i].setText("");

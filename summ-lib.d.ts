@@ -99,7 +99,7 @@ declare module summ {
         public addButton(text: string, callback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, key?: string, overFrame?: number, outFrame?: number, downFrame?: number, upFrame?: number, scaleX?: number, scaleY?: number, textStyle?: any): any;
         public addTextAsButton(text: string, callback?: Function, onOverSize?: number, onDownSize?: number, onOutSize?: number, callbackContext?: Object, setButtonTextInContext?: boolean, scaleX?: number, scaleY?: number, textStyle?: any): Phaser.Text;
         public addTextAsCustomizedButton(text: string, onUpCallback?: Function, onOverCallback?: Function, onDownCallback?: Function, onOutCallback?: Function, callbackContext?: Object, setButtonTextInContext?: boolean, scaleX?: number, scaleY?: number, textStyle?: any): Phaser.Text;
-        public addExistingButton(buttonText: Phaser.Text, button?: Phaser.Button): {};
+        public addExistingButton(buttonText: Phaser.Text, button?: Phaser.Button): any;
         public showMenu(): void;
         public hideMenu(): void;
         private updateButtonPositions();
